@@ -1,9 +1,9 @@
 module.exports = Object.freeze({
   BASIC: {
     base: "/laravel/",
-    description: "Advanced Backend Programming with PHP & MVC with Laravel",
+    description: "Advanced Development with PHP & MVC with Laravel",
     lang: "nl-BE",
-    title: "PHP Advanced Backend Programming with Laravel",
+    title: "Advanced Development with PHP & MVC with Laravel",
   },
   DATA: {
     academicYear: "2022-23",
