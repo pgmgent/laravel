@@ -1,0 +1,25 @@
+{
+  "license": "MIT",
+  "scripts": {
+    "dev": "vuepress dev pages",
+    "build": "vuepress build pages",
+    "git-add-new": "git add .",
+    "git-commit": "git commit -a -m [WIP]",
+    "git-push": "git push --set-upstream origin master",
+    "npm-link-local": "npm link @artevelde/vuepress-theme-artevelde",
+    "npm-update": "npm update"
+  },
+  "devDependencies": {
+    "@artevelde/vuepress-theme-artevelde": "^1.4.4",
+    "markdown-it-abbr": "^1.0.4",
+    "markdown-it-deflist": "^2.1.0",
+    "markdown-it-footnote": "^3.0.2",
+    "markdown-it-ins": "^3.0.0",
+    "markdown-it-mark": "^3.0.0",
+    "markdown-it-sub": "^1.0.0",
+    "markdown-it-sup": "^1.0.0",
+    "twemoji": "^13.0.1",
+    "vuepress": "^1.7.1",
+    "vuepress-plugin-mathjax": "^1.2.8"
+  }
+}
