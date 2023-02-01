@@ -1,6 +1,7 @@
 # Installatie
 
 Om Laravel te installeren hebben we eerst en vooral [Composer](https://getcomposer.org/download/) nodig.
+Zie: [Basis^rincipes > Composer](/laravel/principles/composer.html)
 
 Voer daarna volgende commando's uit in je CLI:
 

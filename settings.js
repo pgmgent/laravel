@@ -40,7 +40,7 @@ module.exports = Object.freeze({
         path: "/principles/",
         collapsable: false,
         sidebarDepth: 1,
-        children: ["routing", "composer", "htaccess"],
+        children: ["composer", "server", "htaccess", "routing"],
       },
     ],
     "/laravel/": [
