@@ -1,39 +1,5 @@
 # Model View Controller
 
-## Routing
-
-Bij elk van deze frameworks wordt gebruik gemaakt van een `.htaccess` file die je bij Laravel kan terugvinden onder de `/public` folder. Deze htaccess zorgt ervoor dat elke url (dat niet bestaat) wordt opgevangen door de `index.php` van die folder.
-
-Er dient dus een andere manier te zijn dan het filesystem om de correcte pagina in te laden. 
-
-Hiervoor maakt Laravel gebruik van een Routing Class. De configuratie van de routing voor de website kan je terugvinden onder `routes/web.php`.
-
-Maak bij wijze van test onderstaande routing aan en test deze door te surfen naar [http://127.0.0.1:8000/hello](http://127.0.0.1:8000/hello)
-
-```
-Route::get('/hello', function () {
-    echo 'Hello World';
-});
-```
-
-We kunnen ook dynamische parameters toevoegen aan onze url. Maak onderstaande nieuwe routing aan en surf naar bijvoorbeeld [http://127.0.0.1:8000/hello/PGM](http://127.0.0.1:8000/hello/PGM). 
-
-```
-Route::get('/hello/{name}', function ($name) {
-    echo 'Hello ' . $name;
-});
-```
-
-Je kan ook een redirect doen van de ene naar een andere URL.
-
-```
-Route::redirect('/hello/world', '/hello', 301);
-```
-
-> **Let wel op dat deze route boven de route /hello/{name} staat!**
-
-Zoals je kon zien stond er in het project reeds een route op de '/' van je website. Hierbij zie je dat Laravel de view functie aanroept en een waarde meegeeft.
-
 ## Views
 
 Deze view kan je terugvinden onder `/resources/views`, als je dus `view('welcome')` aanroept zal de `welcome.blade.php` uitgevoerd worden.
@@ -44,14 +10,14 @@ Maak een view aan voor de route hello en koppel beide reeds aangemaakte routes a
 
 Maak de view dynamisch zodat de naam op het scherm wordt getoond. Dit kan door de parameter mee te geven met de view functie:
 
-```
+```php
 Route::get('/hello/{name}', function ($name) {
     return view('hello', ['name' => $name]);
 });
 ```
 In de template kan je dan de naam printen via php of nog eenvoudiger, via blade.
 
-```
+```html
 <h1>Hello via php: <?= $name; ?></h1>
 <h1>Hello via blade:  {{ $name }}</h1>
 ```
@@ -62,9 +28,7 @@ Je zou, in theorie, alle functionaliteit kunnen schrijven in de Routing config m
 
 Maak een nieuwe controller aan `CourseController.php` in de folder `/app/Http/Controllers`. Hierin hebben we ook methods nodig die aangeroepen kunnen worden vanuit de Routing. Plaats onderstaande code in de `CourseController.php`.
 
-```
-<?php
-
+```php
 namespace App\Http\Controllers;
 
 
@@ -84,14 +48,14 @@ class CourseController extends Controller
 
 In de routing moeten we nu de CourseController en bijhorende method aanroepen in plaats van rechtstreeks de view. 
 
-```
+```php
 Route::get('/courses', [CourseController::class, 'index']);
 Route::get('/course/{id}', [CourseController::class, 'detail']); 
 ```
 
 **Let wel op dat je ook de namespace gaat toevoegen bovenaan de routing config.**
 
-```
+```php
 use App\Http\Controllers\CourseController;
 ```
 

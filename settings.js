@@ -17,8 +17,8 @@ module.exports = Object.freeze({
   },
   NAVBAR: [
     {
-      text: "Composer",
-      link: "/composer/",
+      text: "Principes",
+      link: "/principles/",
     },
     {
       text: "Laravel",
@@ -34,13 +34,13 @@ module.exports = Object.freeze({
     },
   ],
   SIDEBAR: {
-    "/composer/": [
+    "/principles/": [
       {
-        title: "Composer",
-        path: "/composer/",
+        title: "Basisprincipes",
+        path: "/principles/",
         collapsable: false,
         sidebarDepth: 1,
-        children: [],
+        children: ["routing", "composer", "htaccess"],
       },
     ],
     "/laravel/": [
@@ -72,7 +72,7 @@ module.exports = Object.freeze({
         path: "/mailing/",
         collapsable: false,
         sidebarDepth: 1,
-        children: [],
+        children: ["mailhog", "mailtrap"],
       },
     ],
     "/deployment/": [

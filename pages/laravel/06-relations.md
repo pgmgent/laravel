@@ -6,7 +6,7 @@ In je database zullen er ook tabellen zijn waartussen relaties bestaan. In het v
 
 Eerst zullen we een migration moeten maken waarbij we de link moeten leggen tussen 2 tabellen. Let wel dat beide tabellen reeds bestaan of dat de 2e tabel reeds aangemaakt is voor je de relatie legt. Maak dus een nieuwe migration file aan met onderstaande code.
 
-```
+```php
 Schema::create('customers', function (Blueprint $table) {
     $table->id();
     $table->string('name', 150);
@@ -22,7 +22,7 @@ Maak ondertussen ook een model voor customers aan (zie Introductie.md)
 
 Dan kunnen we de relatie leggen tussen beide models op onderstaande manier.
 
-```
+```php
 class Project extends Model
 {
     public function customer()
@@ -34,16 +34,14 @@ class Project extends Model
 
 Deze method kan je dan in je controller of views aanroepen als property.
 
-```
+```php
     $project = Project::find($id);
     echo $project->customer->name;
 ```
 
 Bij customers kunnen we dan de relatie leggen met projects. Dit gebeurt aan de hand van de method `hasMany`. Want een klant kan meerdere projecten hebben.
 
-```
-<?php
-
+```php
 namespace App\Models;
  
 use Illuminate\Database\Eloquent\Model;
@@ -60,7 +58,7 @@ class Customer extends Model
 }
 ``` 
 
-```
+```php
     $customer = Customer::find($id);
     foreach($customer->projects as $project) {
         echo $project->name . ', ';
@@ -83,9 +81,7 @@ Schema::create('project_user', function (Blueprint $table) {
 
 Daarna kan je bij beide Models de relatie aanmaken zoals hieronder aangegeven.
 
-```
-<?php
- 
+```php
 namespace App\Models;
  
 use Illuminate\Database\Eloquent\Model;
@@ -99,9 +95,7 @@ class User extends Model
 }
 ```
 
-```
-<?php
- 
+```php
 namespace App\Models;
  
 use Illuminate\Database\Eloquent\Model;
@@ -121,8 +115,7 @@ Indien je 3 bestaande tabellen met bijhorende models hebt. Waartussen telkens ee
 
 Waarbij 1 brand meerdere types heeft en 1 type meerdere motorcycles bevat. Dan kan je een relatie leggen van Motorcycle naar Brand, doorheen de Types tabel.
 
-```
-<?php
+```php
  
 namespace App\Models;
  
@@ -139,9 +132,7 @@ class Motorcycle extends Model
 
 Het omgekeerde kan je ook doen met `hasManyThrough`. Dus bijvoorbeeld van Brand naar Motorcycles.
 
-```
-<?php
- 
+```php 
 namespace App\Models;
  
 use Illuminate\Database\Eloquent\Model;
