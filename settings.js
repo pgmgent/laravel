@@ -17,8 +17,8 @@ module.exports = Object.freeze({
   },
   NAVBAR: [
     {
-      text: "Principes",
-      link: "/principles/",
+      text: "Basisconcepten",
+      link: "/concepts/",
     },
     {
       text: "Laravel",
@@ -34,10 +34,10 @@ module.exports = Object.freeze({
     },
   ],
   SIDEBAR: {
-    "/principles/": [
+    "/concepts/": [
       {
-        title: "Basisprincipes",
-        path: "/principles/",
+        title: "Basis concepten",
+        path: "/concepts/",
         collapsable: false,
         sidebarDepth: 1,
         children: ["composer", "server", "htaccess", "routing"],
