@@ -27,16 +27,16 @@ Een andere specifieke code is de 204-code, wat betekent dat het verzoek is geluk
 ## Statuscode 300
 *Statuscodes op 300 niveaus hebben alles te maken met **omleiden**. Als een pagina bijvoorbeeld is verplaatst naar een nieuwe locatie of als u de gebruiker wilt omleiden naar gegevens in de cache, gebruikt u een van de vele statuscodes met 300 niveaus.*
 
-## 301 - Permanent Redirect / Permanente omleiding
+### 301 - Permanent Redirect / Permanente omleiding
 Waarschijnlijk het meest voorkomende type statuscode op 300-niveau is de 301. Dit zegt alleen dat de pagina op een bepaalde URL permanent is verplaatst naar een nieuwe URL. Deze nieuwe URL moet in het antwoord met de 301-code naar beneden worden gestuurd. Als dit gebeurt, zal de browser gebruikers automatisch omleiden naar de nieuwe URL. Dit zal zoekmachines er ook toe aanzetten om alle gegevens van de oude URL te associëren met de nieuwe URL, zodat u hierdoor geen rankings in een zoekmachine verliest.
 
-## 302 - Found / Gevonden
+### 302 - Found / Gevonden
 Vergelijkbaar met de 301-status wordt deze status gebruikt om de klant te vertellen dat de pagina een nieuwe URL heeft, maar dit is een tijdelijke wijziging. Dit betekent dat zoekmachines de oude URL niet zullen vervangen door deze nieuwe URL. Dit is handig als u een gebruiker naar een andere versie van dezelfde pagina moet sturen, maar niet wilt dat die versie van de pagina uw hoofdversie in zoekmachines vervangt. Als u bijvoorbeeld A/B-tests uitvoert, zou u de helft van uw gebruikers 302 omleiden naar de alternatieve versie van de site. Dit is ook handig voor zaken als lokalisatie, waarbij u gebruikers wilt omleiden naar gelokaliseerde versies van uw site op basis van waar ze vandaan komen.
 
-## 304 - Not Modified / Niet gewijzigd
+### 304 - Not Modified / Niet gewijzigd
 De laatste belangrijke statuscode op het 300-niveau is de 304. Deze wordt gebruikt voor caching en zegt in feite alleen dat de aangevraagde bron niet is gewijzigd. Dit moet worden gebruikt in combinatie met een eerder 200 statusverzoek dat caching-headers bevatte, zoals de Cache-Control, en Expires-header. Wanneer een client toegang probeert te krijgen tot een bron voordat de in de cache opgeslagen tijdsperiode is verstreken, retourneert de server een 304 om te voorkomen dat alle gegevens opnieuw naar de client moeten worden verzonden.
 
-## 400 Statuscodes
+## Statuscode 400 
 *Nu komen we eindelijk bij **het grootste deel van statuscodes**. Statuscodes op 400-niveau vertegenwoordigen elke **fout** die is opgetreden als gevolg van **invoer van de klant**. Bijvoorbeeld als de client slechte of onvolledige gegevens naar de server stuurt.*
 
 ### 400 - Bad Request / Slecht verzoek
@@ -51,10 +51,10 @@ Bij het omgaan met machtigingen moet u de 403-statuscode gebruiken. Deze status 
 ### 404 - Not Found / Niet gevonden
 Dit is de meest voorkomende HTTP-statuscode die mensen kennen en het betekent alleen dat de bron niet kon worden gevonden. Dit kan bijvoorbeeld worden gebruikt als u toegang probeert te krijgen tot een URL die niet bestaat of als u probeert toegang te krijgen tot iets uit de database dat niet bestaat.
 
-## 429 - Too Many Requests / Te veel verzoeken
+### 429 - Too Many Requests / Te veel verzoeken
 De laatste belangrijke statuscode op het 400-niveau is 429. Deze code wordt gebruikt bij het omgaan met snelheidsbeperking. Als u gebruikers bijvoorbeeld slechts 30 keer per minuut toegang geeft tot uw API en iemand probeert er 31 keer toegang toe te krijgen, retourneert u een 429-statuscode om hen te laten weten dat ze moeten wachten met het verzenden van hun volgende verzoek. Dit moet ook een `Retry-After`-HTTP-header hebben met de hoeveelheid tijd die moet worden gewacht voordat verzoeken door de API worden geaccepteerd.
 
-## 500 Statuscodes
+## Statuscode 500 
 *Het laatste niveau van statuscodes is het 500-niveau en dit lijkt erg op het 400-niveau, maar 500-niveaucodes behandelen fouten op de server en niet op de client.*
 
 ### 500 - Internal Server Error / Interne serverfout

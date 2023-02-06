@@ -1,30 +1,27 @@
 # Routing
 
-Stel, willen deze url opvangen:  
-[http://127.0.0.1:8000/hello](http://127.0.0.1:8000/hello)
+*In front-end-apps is routing een technologie om te schakelen tussen verschillende UI-weergaven,  gebaseerd op de wijzigingen van de huidige URL (met de route). In back-end-apps is routing een technologie om te schakelen tussen verschillende eindpunten aan de serverzijde,  op basis van de wijzigingen van de gevraagde URL (de route vasthouden).*
 
-Dan moeten we in de routes file een nieuwe route aanmaken. Deze route kan je terugvinden onder `/routes/web.php`. (laravel)
+*Veel front-end- en back-end-frameworks implementeren intern routing en roepen verschillende functionaliteiten aan op basis van de URL en zijn componenten.*
+
+
+Routing is met andere woorden dus een mechanisme waarbij HTTP-verzoeken worden gerouteerd naar de code die ze afhandelt. Simpel gezegd bepaal je in de **Router** wat er moet gebeuren als een gebruiker een bepaalde pagina bezoekt.
+
+Hier is een eenvoudig routeringsvoorbeeld van Laravel. Wanneer iemand de subpagina /test/ van de website opent , zal deze een Hello World- tekst weergeven.
 
 ```php
-Route::get('/hello', function () {
-    echo 'Hello World';
+Route::get('/test', function () { 
+    return 'Hello World';
 });
 ```
 
-We kunnen ook dynamische parameters toevoegen aan onze url. Maak onderstaande nieuwe routing aan en surf naar bijvoorbeeld [http://127.0.0.1:8000/hello/PGM](http://127.0.0.1:8000/hello/PGM). 
+Een ander voorbeeld. Hier vertellen we de applicatie om onze verifyFields()methode in de  ContactFormControllerklas uit te voeren, wanneer iemand het formulier op de /contact/ pagina indient via de POST-methode.
 
-```
-Route::get('/hello/{name}', function ($name) {
-    echo 'Hello ' . $name;
-});
-```
+```php
+Route::post('/contact', 'ContactFormController@verifyFields');
+ ```
 
-Je kan ook een redirect doen van de ene naar een andere URL.
+Er zijn veel kant-en-klare routeringsbibliotheken die het gemakkelijk maken om nieuwe routes aan uw applicatie toe te voegen, zonder ze één voor één handmatig aan te maken.
 
-```
-Route::redirect('/hello/world', '/hello', 301);
-```
+<https://packagist.org/?query=route>
 
-> **Let wel op dat deze route boven de route /hello/{name} staat!**
-
-Zoals je kon zien stond er in het project reeds een route op de '/' van je website. Hierbij zie je dat Laravel de view functie aanroept en een waarde meegeeft.

@@ -3,7 +3,7 @@ module.exports = Object.freeze({
     base: "/laravel/",
     description: "Advanced Development with PHP & MVC with Laravel",
     lang: "nl-BE",
-    title: "Framework Development & Laravel",
+    title: "Advanced Development & Laravel",
   },
   DATA: {
     academicYear: "2022-23",
@@ -40,7 +40,14 @@ module.exports = Object.freeze({
         path: "/concepts/",
         collapsable: false,
         sidebarDepth: 1,
-        children: ["statuscodes", "composer", "server", "htaccess", "routing"],
+        children: [
+          "statuscodes",
+          "csrf",
+          "composer",
+          "server",
+          "htaccess",
+          "routing",
+        ],
       },
     ],
     "/laravel/": [
@@ -53,6 +60,7 @@ module.exports = Object.freeze({
           "01-frameworks",
           "02-installation",
           "03-mvc",
+          "04-routing",
           "04-asset-linking",
           "05-database-migrations",
           "06-relations",

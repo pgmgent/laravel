@@ -1,17 +1,18 @@
-# Linking assets
+# Assets 
 
-De scripts en styles die je wenst te gebruiken moeten steeds in de `public` folder staan.
+*Met assets bedoelen we hier de css en javascript files die je wenst te gebruiken in je project. De scripts en styles die je wenst te gebruiken moeten steeds in de `public` folder staan.*
 
-Je kan dit doen door je files rechtstreeks in de `public/css/` te plaatsen. Of je kan gebruik maken via Laravel Mix (Webpack). Dit is een node package die styles en scripts kan bundelen, minifien en plaatsen op de juiste locatie.
+Je kan dit doen door je files rechtstreeks in de `public/css/` te plaatsen. Of je kan gebruik maken via Laravel Mix. Dit is een wrapper rond webpack (een bundler die je kan gebruiken om je assets te bundelen en te compileren.)
 
-Hoe dan ook moet je vanuit je templates of layout linken naar je css op onderstaande manier.
-```
+Je linkt naar die bestanden in je html bestanden via de `asset()` helper. Deze helper zal de juiste url teruggeven naar je bestand. 
+
+``` html
 <link rel="stylesheet" href="{{ asset('css/style.css'); }} ">
 ```
 
 ## Vite gebruiken
 
-Standaard gebruikt Laravel Vite voor asset bundeling en compiling. Installeer eerst de node packages.
+Vite is een bundler die je kan gebruiken om je assets te bundelen en te compileren. Het is een alternatief voor webpack. Vite is sneller dan webpack en heeft een kleinere footprint.
 
 ``` shell
 npm install
@@ -23,7 +24,8 @@ Pas nadien de `vite.config.js` aan in de root van je project. Om nadien de build
 npm run build
 ```
 
-Je zal zien dat vite ook een versienummer geeft aan de css. Om te linken vanuit je html moet je onderstaande code gebruiken.
+Je zal zien dat vite ook een versienummer geeft aan de css. Om te linken vanuit je html moet je onderstaande code gebruiken. 
+
 ``` html
 <head>
     ...

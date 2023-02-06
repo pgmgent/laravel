@@ -1,19 +1,13 @@
 # CRUD via Eloquent ORM
 
-Laravel maakt gebruik van een Object-relational mapper (ORM) om eenvoudig interactie te hebben met de database. 
-
-Een ORM vertaald relationele data om naar object georiënteerde programma code.
-
-Dit om het schrijven van SQL statements te vereenvoudigen en de kans op SQL Injecten te verkleinen.
-
-Je kan het vergelijken met `TypeORM` or `Prisma` binnen Node.js
+*Laravel maakt gebruik van een Object-relational mapper (ORM) om eenvoudig interactie te hebben met de database. Een ORM vertaald relationele data om naar object georiënteerde programma code. Dit om het schrijven van SQL statements te vereenvoudigen en de kans op SQL-injecties te verkleinen. ( je kan dit vergelijken met `TypeORM` or `Prisma` binnen Node.js)*
 
 ## Basis
 Standaard wordt ieder Model uitgerust met de methods die gebruik maken van dit ORM. Het ORM zorgt er dus voor dat database records worden omgevormd naar Objecten die we kunnen gebruiken.
 
 Zo hebben we reeds de methods `all()` en `find()` gezien bij de introductie:
 
-```
+``` php
 //Alle records ophalen
 $projects = Project::all();
 var_dump($projects);
@@ -29,7 +23,7 @@ Uiteraard zullen applicaties gebruik maken van meer uitdagende SQL queries om da
 
 Een query opbouwen kan je vergelijken met het schrijven van een sql query. Het grootste verschil is vooral dat de volgorde bij SQL altijd gerespecteerd moet worden. Maar bij het opbouwen via de Eloquent ORM is dat niet meer van belang. Hoewel het me logisch en leesbaar lijkt om dit nog steeds te behouden.
 
-```
+``` sql
 SELECT * FROM projects 
 WHERE publish = 1 AND company_id = 4
 ORDER BY name ASC
@@ -38,7 +32,7 @@ LIMIT 20
 
 Als we bovenstaande SQL statement in Laravel willen opbouwen via een Model `Project` dan zal dit als volgt gebeuren.
 
-```
+``` php
 $projects = Project::where('publish', 1)
             ->where('company_id', 4)
             ->orderBy('name', 'DESC')
@@ -48,7 +42,7 @@ $projects = Project::where('publish', 1)
 
 Indien je queries moet uitvoeren dat ruimer zijn dan 1 model of indien er geen model is kan je ook de `DB` Model gebruiken hiervoor
 
-```
+``` php
 $projects = DB::table('projects')
                 ->where('publish', 1)
                 ->where('company_id', 4)
@@ -63,7 +57,7 @@ $projects = DB::table('projects')
 
 Via de models kan je ook eenvoudig een nieuw record aanmaken in de database.
 
-```
+``` php
 $project = new Project();
 $project->name = 'My new project';
 $project->description = 'Full description of the project...';
@@ -76,7 +70,7 @@ $project->save();
 
 Hetzelfde kunnen we doen voor het aanpassen van een record.
 
-```
+``` php
 $project = Project::find(123);
 $project->customer_id = 2;
 $project->save();
@@ -86,7 +80,7 @@ $project->save();
 
 Het verwijderen van 1 record komt overeen met het wijzigen, maar uiteraard met gebruik van de delete method.
 
-```
+``` php
 $project = Project::find(123);
 $project->delete();
 
@@ -96,7 +90,7 @@ Project::find(123)->delete();
 
 Je kan ook meerdere records dat voldoen aan een zoekopdracht in 1 actie verwijderen.
 
-```
+``` php
 //Alle projecten van klant met id 4 uit de database verwijderen
 Project::where('customer_id', 4)->delete();
 ```
@@ -111,9 +105,7 @@ Hierbij wordt een extra kolom toegevoegd `deleted_at`. Indien een record verwijd
 
 In je model moet je aangeven dat deze werkt via zo een soft delete:
 
-```
-<?php
- 
+``` php
 namespace App\Models;
  
 use Illuminate\Database\Eloquent\Model;
@@ -127,7 +119,7 @@ class Project extends Model
 
 Uiteraard moet ook eerst de `deleted_at` kolom aangemaakt worden. Dit kan via een migration.
 
-```
+``` php
 Schema::table('projects', function (Blueprint $table) {
     $table->softDeletes();
 });

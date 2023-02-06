@@ -1,4 +1,8 @@
-# (development) web servers
+# Web server
+
+*Een web server is een computer die web applicaties host. Een web server kan je gebruiken om je applicatie te testen of om je applicatie te hosten. Een web server kan je lokaal installeren op je computer of op een server. Een web server kan je installeren op een windows, mac of linux computer.*
+
+*Er zijn een aantal verschillende web servers die je kan gebruiken om je applicatie te hosten. De meest gebruikte web servers zijn Apache, Nginx en IIS. Deze web servers zijn geschikt voor productie. Je kan deze web servers ook gebruiken om je applicatie te testen, maar dan moet je de web server wel installeren op je computer. Hieronder vind je een overzicht van de verschillende web servers.*
 
 ## PHP development server
 
