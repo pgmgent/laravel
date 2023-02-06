@@ -86,9 +86,10 @@ module.exports = Object.freeze({
         sidebarDepth: 1,
         children: [
           {
-            title: "Basisconcepten",
+            title: "De basis",
             path: "/laravel/basics/",
             children: [
+              "/laravel/basics/installation",
               "/laravel/basics/mvc",
               "/laravel/basics/routing",
               "/laravel/basics/forms-validation",
@@ -117,10 +118,7 @@ module.exports = Object.freeze({
           {
             title: "How to",
             path: "/laravel/how-to/",
-            children: [
-              "/laravel/how-to/installation",
-              "/laravel/how-to/build-an-api",
-            ],
+            children: ["/laravel/how-to/build-an-api"],
           },
           // {
           //   title: "Cheat Sheet",
