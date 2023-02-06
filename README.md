@@ -5,6 +5,6 @@
 
 ## Authors
 
-- Dieter De Weirdt
 - Frederick Roegiers
+- Dieter De Weirdt
 

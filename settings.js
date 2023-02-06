@@ -41,12 +41,40 @@ module.exports = Object.freeze({
         collapsable: false,
         sidebarDepth: 1,
         children: [
-          "statuscodes",
-          "csrf",
-          "composer",
-          "server",
-          "htaccess",
-          "routing",
+          {
+            title: "HTTP",
+            path: "/concepts/http/",
+            children: [
+              "/concepts/http/headers",
+              "/concepts/http/methods",
+              "/concepts/http/statuscodes",
+            ],
+          },
+          {
+            title: "Servers",
+            path: "/concepts/servers/",
+            children: [
+              "/concepts/servers/htaccess",
+              "/concepts/servers/routing",
+            ],
+          },
+          {
+            title: "Beveiliging",
+            path: "/concepts/security/",
+            children: [
+              "/concepts/security/csrf",
+              "/concepts/security/xss",
+              "/concepts/security/sql-injection",
+            ],
+          },
+          {
+            title: "Composer",
+            path: "/concepts/composer/",
+            children: [
+              "/concepts/composer/installation",
+              "/concepts/composer/getting-started",
+            ],
+          },
         ],
       },
     ],
