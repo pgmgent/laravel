@@ -1,4 +1,5 @@
 # Installatie
+
 ## Installatie via ddev
 
 Je kan via ddev en docker op een eenvoudige manier een server starten. Via deze ddev kan je ook een laravel project starten. [Installatie instructies...](https://ddev.readthedocs.io/en/latest/users/quickstart/#laravel)
@@ -9,11 +10,11 @@ cd my-laravel-app
 ddev config --project-type=laravel --docroot=public --create-docroot --php-version=8.1
 ddev composer create --prefer-dist --no-install --no-scripts laravel/laravel -y
 ddev composer install
-ddev exec "php artisan key:generate"
+ddev exec "ddev artisan key:generate"
 ddev launch
 ```
 
-## Installatie via Composer
+## Installatie via PHP en Composer
 
 Om Laravel te installeren hebben we eerst en vooral [Composer](https://getcomposer.org/download/) nodig.
 Zie: [Basis^rincipes > Composer](/laravel/principles/composer.html)

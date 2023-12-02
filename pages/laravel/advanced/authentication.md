@@ -22,9 +22,9 @@ En voer daarna een van onderstaande installatie script uit.
 
 ``` php
 // Kies een van onderstaande
-php artisan ui bootstrap --auth
-php artisan ui vue --auth
-php artisan ui react --auth
+ddev artisan ui bootstrap --auth
+ddev artisan ui vue --auth
+ddev artisan ui react --auth
 ```
 
 Je zal zien dat er nu Routes, Controllers en Views zijn aangemaakt om in te loggen, te registeren en naar het dashboard te gaan.
@@ -50,9 +50,9 @@ composer require laravel/breeze --dev
 Om daarna de scripts te runnen en de javascript en css te builden.
 
 ``` php
-php artisan breeze:install
+ddev artisan breeze:install
  
-php artisan migrate
+ddev artisan migrate
 npm install
 npm run dev
 ```

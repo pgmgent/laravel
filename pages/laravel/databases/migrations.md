@@ -1,6 +1,6 @@
 # Migrations
 
-Via de php artisan van Laravel kan je migrations aanmaken en uitvoeren op je database.
+Via de ddev artisan van Laravel kan je migrations aanmaken en uitvoeren op je database.
 
 Maak een eerste migrations file aan via het commando
 

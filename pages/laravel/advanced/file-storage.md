@@ -11,7 +11,7 @@ Laravel geeft ons de mogelijkheid om eenvoudig te switchen tussen deze technieke
 Hiervoor moet een link gemaakt worden in de public folder naar de storage folder. Een link is een soort virtuele folder die doorverwijst naar de bron folder. Maak de link aan via onderstaande commando.
 
 ```
-php artisan storage:link
+ddev artisan storage:link
 ```
 
 Je zal nu merken dat er een folderlink is toegevoegd aan je public folder.
