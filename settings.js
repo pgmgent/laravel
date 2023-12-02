@@ -106,6 +106,7 @@ module.exports = Object.freeze({
             children: [
               "/laravel/databases/connecting",
               "/laravel/databases/migrations",
+              "/laravel/databases/seeding",
               "/laravel/databases/eloquent",
               "/laravel/databases/relations",
             ],
