@@ -1,4 +1,4 @@
-name: docs
+name: build vuepress and deploy to master branch
 
 on:
   push:
