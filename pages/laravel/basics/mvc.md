@@ -113,20 +113,14 @@ In je view definieer je welke layout je wenst te gebruiken en vul je de inhoud i
 
 Nu moeten we nog de correcte inhoud uit onze database kunnen ophalen. Dit gebeurt in de model.
 
-Maar daarvoor moeten we eerst een database hebben. Hiervoor moet je eerst de juiste connectie maken in de `.env` file. Pas de connectie gegevens aan volgens jouw MySQL database:
-
-```
-DB_DATABASE=pgm-laravel
-DB_USERNAME=root
-DB_PASSWORD=secret123
-```
+Maar daarvoor moeten we eerst een database hebben. Hiervoor moet je eerst [de juiste connectie maken in de `.env` file](/laravel/laravel/databases/connecting.html).
 
 Daarna moeten we de migration scripts runnen van Laravel. Bekijk alvast eens de bestaande migrations `database/migrations/`.
 
 Voor daarna onderstaande commando uit in je CLI.
 
 ```
-php artisan migrate
+ddev artisan migrate
 ```
 
 Indien de database die je hebt gedefinieerd in je `.env` nog niet bestaat, zal je de vraag krijgen om deze aan te maken.
