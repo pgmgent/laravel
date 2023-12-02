@@ -22,3 +22,14 @@ DB_PASSWORD=
 ```
 
 Verander deze naar jouw eigen configuratie van je sql server.
+
+Bij een ddev is dit standaard:
+
+``` env
+DB_CONNECTION=mysql
+DB_HOST=db
+DB_PORT=3306
+DB_DATABASE=db
+DB_USERNAME=db
+DB_PASSWORD=db
+```
