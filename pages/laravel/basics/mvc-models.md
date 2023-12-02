@@ -18,7 +18,7 @@ We kunnen nu zelf migrations schrijven ofwel bestaande tabellen importeren of aa
 
 Voor de eerste oefening importeren we de pgm courses sql van vorige les.
 
-### Model aanmaken
+## Model aanmaken
 
 Daarna kunnen we ons eerste model aanmaken en afleiden van een basis Model. Hierdoor erven we meteen alle methods over van dit basis Model.
 
