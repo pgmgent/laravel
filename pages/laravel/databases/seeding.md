@@ -132,6 +132,32 @@ Uitvoeren kan nog steeds met `ddev artisan db:seed`. Maar je kan ook een specifi
 ddev artisan db:seed --class=ProjectSeeder
 ```
 
+## Tussentabel vullen
+
+Hieronder zien jullie een voorbeeld van het opvullen van een tussentabel waarbij er reeds projecten waren aangemaakt en gevuld via een seed.
+
+``` php
+//tussentabel leeg maken
+DB::table('employee_project')->truncate();
+Employee::truncate();
+
+//Medewerkers vullen
+Employee::factory()->count(50)->create();
+
+//koppel 1-3 random projecten aan elke medewerker
+foreach (Employee::all() as $employee) {
+    $projects = Project::inRandomOrder()->take(rand(1, 3))->pluck('id');
+    foreach ($projects as $projectId) {
+        DB::table('employee_project')->insert([
+            'employee_id' => $employee->id,
+            'project_id' => $projectId,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+    }
+}
+```
+
 ### Meer info
 
 - [Factories handleiding](https://laravel.com/docs/10.x/eloquent-factories)

@@ -52,7 +52,35 @@ Schema::table('projects', function (Blueprint $table) {
 });
 ```
 
-(Meer info in de handleiding van Laravel)[https://laravel.com/docs/9.x/migrations]
+(Meer info in de handleiding van Laravel)[https://laravel.com/docs/10.x/migrations]
+
+## Veel-op-veel relatie
+
+Een Many-to-many relatie verwacht een tussentabel. De naamgeving van deze tussen tabellen in Laravel is tabelnamen in enkelvoud, alfabetisch met een underscore tussen.
+
+Dus als we medewerkers willen koppelen aan een project dan zullen we een employees tabel hebben. We weten dan medewerkers aan meerdere projecten gekoppeld kunnen worden en een project kan meerdere medewerks hebben (many-to-many). De tussentabel zal in dit geval de naam `employee_project` krijgen.
+
+In de tabel hebben we minstens 2 foreign keys (FK) nodig naar de andere tabellen. Je kan ook de timestamps hierbij toevoegen indien dit handig is om te weten wanneer de relatie is gemaakt. 
+
+``` php
+Schema::create('employee_project', function (Blueprint $table) {
+    $table->id();
+    $table->foreignId('employee_id');
+    $table->foreignId('teacher_id');
+    $table->timestamps(); //optioneel
+});
+```
+### Combined primary key
+
+Het is ook mogelijk om een combined primary key te maken in plaats van een nieuw id per relatie. Hiervoor moet je in de creatie meegeven dat de primary key bestaat uit de 2 foreign keys. Dit wil dan wel zeggen dat je de relatie maar 1 keer kan aanmaken.
+
+``` php
+Schema::create('employee_project', function (Blueprint $table) {
+    $table->foreignId('employee_id');
+    $table->foreignId('teacher_id');
+    $table->primary(['employee_id', 'project_id']);
+});
+```
 
 ## Roll-back (keer ne ke were)
 

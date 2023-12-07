@@ -71,7 +71,7 @@ Als we een veel op veel relatie wensen te realiseren moeten we eerst een tussent
 
 Bijvoorbeeld de tussentabel `project_user`. Want 1 project kan door meerdere users uitgevoerd worden en 1 user kan meerdere projecten hebben.
 
-```
+``` php
 Schema::create('project_user', function (Blueprint $table) {
     $table->foreignId('user_id');
     $table->foreignId('project_id');
