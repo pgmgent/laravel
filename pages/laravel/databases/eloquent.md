@@ -1,6 +1,46 @@
-# Eloquent ORM
+# Querying data
 
-*Laravel maakt gebruik van een Object-relational mapper (ORM) om eenvoudig interactie te hebben met de database. Een ORM vertaald relationele data om naar object georiënteerde programma code. Dit om het schrijven van SQL statements te vereenvoudigen en de kans op SQL-injecties te verkleinen. ( je kan dit vergelijken met `TypeORM` or `Prisma` binnen Node.js)*
+Bij Laravel kunnen we sql queries uitvoeren via de select method. In de eerste parameter plaatsen we de SQL Query. De 2e parameter array kunnen we gebruiken om variabelen te binden om sqlInjection te voorkomen.
+
+```php
+$projects = DB::select( "SELECT * FROM projects", []);
+dd($projects);
+```
+
+## Querybuilder
+
+Bij SQL moeten we een goede kennis hebben van SQL. Daarom heeft Laravel er ook voor gezorgd dat we de querybuilder kunnen gebruiken. Hiermee bouwen we een query op aan de hand van verschillende methods. Voordeel is vooral dat we hier dynamischer mee kunnen omgaan en dat de volgorde niet zo belangrijk is.
+
+Het voorbeeld van hierboven kunnen we ook schrijven als:
+
+```php
+$projects = DB::table('projects')->select('*')->get();
+dd($projects);
+```
+
+We hebben dus nog steeds de basis kennis nodig van sql maar kunnen vertrouwen dat Laravel deze correct zal schrijven. Een uitgebreider voorbeeld zou kunnen zijn:
+
+```php
+$querybuilder = DB::table('projects')->where('customer', $customer);
+
+if(request('search')) {
+    $search = request('search');
+    //if a searchquery is available in the request -> filter on projects
+    $querybuilder->where('name', 'LIKE', "%$search%");
+}
+
+$projects = $querybuilder->get();
+
+dd($projects);
+```
+
+Het resultaat van deze queries zijn steeds standaard objecten of array's van standaard objecten. 
+
+## Eloquent ORM
+
+Omdat we binnen een MVC willen werken met models heeft Laravel ook een ORM voorzien. Deze zorgt er dan voor dat het resultaat van een query omgevormd wordt naar de juiste model (bv `Project`);
+
+> Laravel maakt gebruik van een *Object-relational mapper (ORM)* om eenvoudig interactie te hebben met de database. Een ORM vertaalt relationele data om naar object georiënteerde programma code. Dit om het schrijven van SQL statements te vereenvoudigen en de kans op SQL-injecties te verkleinen. ( je kan dit vergelijken met `TypeORM` or `Prisma` binnen Node.js)
 
 ## Basis
 Standaard wordt ieder Model uitgerust met de methods die gebruik maken van dit ORM. Het ORM zorgt er dus voor dat database records worden omgevormd naar Objecten die we kunnen gebruiken.
@@ -51,7 +91,7 @@ $projects = DB::table('projects')
                 ->get();
 ```
 
-[Een volledig overzicht van de mogelijkheden kan je terugvinden op de Laravel handleiding](https://laravel.com/docs/9.x/queries#limit-and-offset)
+[Een volledig overzicht van de mogelijkheden kan je terugvinden op de Laravel handleiding](https://laravel.com/docs/10.x/queries#limit-and-offset)
 
 ## Aanmaken van nieuwe records
 
@@ -97,31 +137,4 @@ Project::where('customer_id', 4)->delete();
 
 **Let op!** Bij het verwijderen van records zijn die ook meteen verdwenen. Een soort prullenmand bestaat niet echt binnen MySQL.
 
-## Soft delete of zacht verwijderen
-
-Laravel heeft wel een ingebouwde manier om records niet meteen te wissen.
-
-Hierbij wordt een extra kolom toegevoegd `deleted_at`. Indien een record verwijderd is zal hier de datum ingevuld worden. Het records zal dus blijven bestaan in de database maar zal niet meer opgehaald worden bij een gewone `get()` of `find()`.
-
-In je model moet je aangeven dat deze werkt via zo een soft delete:
-
-``` php
-namespace App\Models;
- 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
- 
-class Project extends Model
-{
-    use SoftDeletes;
-}
-```
-
-Uiteraard moet ook eerst de `deleted_at` kolom aangemaakt worden. Dit kan via een migration.
-
-``` php
-Schema::table('projects', function (Blueprint $table) {
-    $table->softDeletes();
-});
-```
 
