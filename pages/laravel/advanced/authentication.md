@@ -6,6 +6,8 @@
 
 Laravel biedt verschillende mogelijkheden om authenticatie te implementeren. Je kan kiezen voor een volledig zelfgeschreven authenticatie systeem. Of je kan gebruik maken van een package die dit voor jou doet. Laravel zelf biedt 2 packages aan om dit te doen. `laravel/ui` en `laravel/breeze`. Beide packages bieden een auth systeem aan. Maar `laravel/breeze` is meer recent en biedt meer mogelijkheden. Hieronder leg ik laravel Breeze uit. Wil je een iets eenvoudigere authenticatie dan kan je opteren om [Laravel UI](/laravel/laravel/how-to/laravel-ui) te installeren
 
+>*Opgelet!* Heb je reeds routes en layouts aangemaakt dan neem je hier best een backup. Je kan er ook voor zorgen dat je jouw `layouts/app.blade.php` hernoemt naar `my_layout.php`
+
 ## Laravel Breeze
 
 Voor Laravel Breeze moet je gelijkaardige stappen doorlopen. Installeer de package:
