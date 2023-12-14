@@ -33,72 +33,9 @@ Je zal zien dat vite ook een versienummer geeft aan de css. Om te linken vanuit 
 </head>
 ```
 
-Het is natuurlijk wel vervelend om, na ieder aanpassing in CSS of JavaScript, dit commando te moeten uitvoeren. Vandaar dat je ook een watch kan starten. Voeg hiervoor een watch script toe aan `package.json`
-
-``` json
-"scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "watch": "vite build --watch"
-},
-```
-
-Nadien kan je de watch starten.
+Tijdens development is het vervelend om telkens een build te moeten doen, dus maken we gebruik van een vite server die je kan opstarten via onderstaande code.
 
 ``` shell
-npm run watch
+npm run dev
 ```
 
-## Webpack gebruiken
-
-Installeer de package `laravel-mix` via `npm`. Indien er nog geen npm aanwezig is in het project moet je eerst `npm init` doen.
-
-``` shell
-npm install laravel-mix --save-dev
-```
-
-Maak nu het bestand `webpack.mix.js` aan in de root van je project.
-
-Om een build te doen van je css kan je onderstaande script toevoegen aan het javascript bestand.
-
-``` javascript
-let mix = require('laravel-mix');
-
-mix.postCss('resources/css/app.css', 'public/css');
-mix.minify('public/css/app.css');
-```
-
-Run het script met onderstaande commando in je CLI. Je zal zien dat in de public folder nu 2 bestanden zijn toegevoegd aan je css folder `app.css` en `app.min.css`. 
-
-``` shell
-npx mix
-```
-
-Je merkt wellicht op dat de minified versie dezelfde is. Dit komt doordat hij in development de minify niet uitvoert. Dit kan je forceren door `--production` mee te geven met het commando.
-
-``` shell
-npx mix --production
-```
-
-Het is natuurlijk wel vervelend om, na ieder aanpassing in CSS of JavaScript, dit commando te moeten uitvoeren. Vandaar dat je ook een watch kan starten. Deze zal bij iedere aanpassing het script uitvoeren.
-
-``` shell
-npx mix watch
-```
-
-### Sass / Scss en mix
-
-Wens je gebruik te maken van Sass of Scss dan zal mix ook deze bestanden compileren naar een css bestand.
-
-Hiervoor hebben we de sass compiler package nodig:
-
-``` shell
-npm install sass-loader@^12.1.0 sass resolve-url-loader@^5.0.0 --save-dev --legacy-peer-deps
-```
-
-En moeten we onderstaande regel toevoegen aan `webpack.mix.js`.
-**Let wel:** je moet de watch opnieuw starten bij aanpassingen aan `webpack.mix.js` 
-
-``` javascript
-mix.sass('resources/scss/style.scss', 'public/css');
-```
