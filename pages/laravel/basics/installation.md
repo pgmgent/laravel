@@ -24,14 +24,28 @@ DB_USERNAME=db
 DB_PASSWORD=db
 ```
 
-Zoals je kan zien in de .env is er geen `APP_KEY` ingevuld. Genereer deze met onderstaande code. Daarna kan je de website testen.
+Zoals je kan zien in de .env is er geen `APP_KEY` ingevuld. Genereer deze met onderstaande code.
 
 ``` shell
 ddev artisan key:generate
+```
+
+Als laatste stap heeft Laravel reeds enkele standaard tabellen nodig om te kunnen opstarten. Voor onderstaande commando uit om deze tabellen te installeren.
+
+``` shell
+ddev artisan migrate
+```
+
+Nu kan je de site bekijken via de voorziene url.
+
+``` shell
+ddev describe
 ddev launch
 ```
 
 ## Installatie via PHP en Composer
+
+Indien je geen gebruik maakt van ddev 
 
 Om Laravel te installeren hebben we eerst en vooral [Composer](https://getcomposer.org/download/) nodig.
 Zie: [Basis^rincipes > Composer](/laravel/principles/composer.html)
