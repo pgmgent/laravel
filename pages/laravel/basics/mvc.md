@@ -10,6 +10,8 @@ Het MVC pattern wordt vaak gebruikt bij webdevelopment frameworks. Dit bestaat u
 | Views | Bevat de inhoud of een deel van de inhoud van een pagina | /resources/views/... |
 | Components & Layout | Bevat meerdere componenten of layouts die wil hergebruiken | /resources/views/components/... |
 
+<iframe width="768" height="432" src="https://miro.com/app/live-embed/uXjVPAtft5w=/?moveToViewport=-1093,1062,3246,1790&embedId=391505196459" frameborder="0" scrolling="no" allow="fullscreen; clipboard-read; clipboard-write" allowfullscreen></iframe>
+
 ### Meer info
 
 - [Routing](https://laravel.com/docs/11.x/routing)
