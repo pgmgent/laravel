@@ -45,8 +45,8 @@ ddev launch
 > ---
 > Voeg onderstaande regels toe aan de `.ddev/config.yaml`. Kies poorten die je nog niet gebruikt voor een andere website.
 > ```
-> host_webserver_port: "5000"
-> host_https_port: "5001"
-> host_db_port: "5002"
+> host_webserver_port: "8000"
+> host_https_port: "8001"
+> host_db_port: "8002"
 > ```
 
