@@ -6,7 +6,7 @@ module.exports = Object.freeze({
     title: "Advanced Development & Laravel",
   },
   DATA: {
-    academicYear: "2022-23",
+    academicYear: "2024-25",
     authors: ["Frederick Roegiers", "Dieter De Weirdt"],
     canvas: null,
     department: "cmd",
