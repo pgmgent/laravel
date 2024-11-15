@@ -70,21 +70,17 @@ class Project extends Model
 De views zorgen ervoor dat je data omgezet wordt naar een stukje HTML. Aangevuld met de layout vormt dit dan de volledige HTML response van de server naar de client.
 
 ``` html
-@extends('layouts.app')
- 
-@section('title', 'Projecten')
- 
-@section('content')
+<x-layout>
     <h1>Projecten van PGM</h1>
 
     @foreach ($projects as $project)
     <li><a href="/project/{{ $project->id }}">{{ $project->name }}</a></li>
     @endforeach
-@endsection
+</x-layout>
 ```
 
 ### Layout 
-*vb `/resources/views/layouts/app.blade.php`*
+*vb `/resources/views/components/layout.blade.php`*
 
 Bevat de volledige layout van de pagina, met placeholders die al dan niet reeds een standaard waarde hebben.
 
@@ -99,21 +95,18 @@ Bevat de volledige layout van de pagina, met placeholders die al dan niet reeds 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>@yield('title') - {{ config('app.name', 'PGM') }}</title>
+    <title>{{ title }} - {{ config('app.name', 'PGM') }}</title>
 
     <!-- Style -->
     @vite(['resources/sass/app.scss'])
 </head>
 <body>
-    @section('header')
-        <header>
-            <!-- Dit is de standaard header, indien niets gedefineerd in de view zal deze verschijnen. -->
-            <div class="brand">App Name</div>
-        </header>
-    @show
+    <header>
+        <div class="brand">{{ config('app.name', 'PGM') }}</div>
+    </header>
 
     <main class="container">
-        @yield('content')
+        {{ $slot }}
     </main>
 </body>
 </html>
