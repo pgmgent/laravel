@@ -78,7 +78,7 @@ Een Many-to-many relatie verwacht een tussentabel. De naamgeving van deze tussen
 
 Dus als we medewerkers willen koppelen aan een project dan zullen we een employees tabel hebben. We weten dan medewerkers aan meerdere projecten gekoppeld kunnen worden en een project kan meerdere medewerks hebben (many-to-many). De tussentabel zal in dit geval de naam `employee_project` krijgen.
 
-In de tabel hebben we minstens 2 foreign keys (FK) nodig naar de andere tabellen. Je kan ook de timestamps hierbij toevoegen indien dit handig is om te weten wanneer de relatie is gemaakt. 
+
 
 ``` php
 Schema::create('employee_project', function (Blueprint $table) {

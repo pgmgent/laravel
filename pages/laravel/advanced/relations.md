@@ -54,7 +54,7 @@ class Customer extends Model
 
 Als we een veel op veel relatie wensen te realiseren moeten we eerst een tussentabel of pivot table aanmaken via de migrations. [Leer meer over hoe je de migration moet maken voor een tussentabel](/laravel/laravel/databases/relations#many-to-many)
 
-In dit voorbeeld gaan we uit van de tussentabel `project_user`. Want 1 project kan door meerdere users uitgevoerd worden en 1 user kan meerdere projecten hebben. 
+In dit voorbeeld gaan we uit van de tussentabel `employee_project`. Want 1 project kan door meerdere users uitgevoerd worden en 1 user kan meerdere projecten hebben. 
 
 Om de relatie te leggen tussen de beide tabellen gebruiken we de `belongsToMany` method
 
@@ -63,7 +63,7 @@ namespace App\Models;
  
 use Illuminate\Database\Eloquent\Model;
  
-class User extends Model
+class Employee extends Model
 {
     public function projects()
     {
@@ -79,9 +79,9 @@ use Illuminate\Database\Eloquent\Model;
  
 class Projects extends Model
 {
-    public function users()
+    public function employees()
     {
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(Employee::class);
     }
 }
 ```

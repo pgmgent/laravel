@@ -41,8 +41,7 @@ ddev describe
 ddev launch
 ```
 
-> Tip: Zet de poorten vast om bij het opstarten telkens dezelfde poorten te krijgen
-> ---
+> ### Tip: Zet de poorten vast om bij het opstarten telkens dezelfde poorten te krijgen
 > Voeg onderstaande regels toe aan de `.ddev/config.yaml`. Kies poorten die je nog niet gebruikt voor een andere website.
 > ```
 > host_webserver_port: "8000"

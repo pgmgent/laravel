@@ -109,12 +109,16 @@ module.exports = Object.freeze({
               "/laravel/databases/seeding",
               "/laravel/databases/eloquent",
               "/laravel/databases/relations",
+              "/laravel/databases/soft_delete",
             ],
           },
           {
             title: "Dieper in op Laravel",
             path: "/laravel/advanced/",
             children: [
+              "/laravel/advanced/relations",
+              "/laravel/advanced/assets",
+              "/laravel/advanced/form-validation",
               "/laravel/advanced/authentication",
               "/laravel/advanced/file-storage",
               "/laravel/advanced/localization",
