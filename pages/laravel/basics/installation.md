@@ -44,7 +44,9 @@ ddev launch
 > Tip: Zet de poorten vast om bij het opstarten telkens dezelfde poorten te krijgen
 > ---
 > voeg onderstaande regels toe aan de `.ddev/config.yaml`. Kies poorten die je nog niet gebruikt voor een andere website
+> ```
 > host_webserver_port: "5000"
 > host_https_port: "5001"
 > host_db_port: "5002"
+> ```
 
