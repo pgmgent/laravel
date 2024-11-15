@@ -160,6 +160,6 @@ foreach (Employee::all() as $employee) {
 
 ### Meer info
 
-- [Factories handleiding](https://laravel.com/docs/10.x/eloquent-factories)
-- [Seeding handleiding](https://laravel.com/docs/10.x/seeding)
+- [Factories handleiding](https://laravel.com/docs/11.x/eloquent-factories)
+- [Seeding handleiding](https://laravel.com/docs/11.x/seeding)
 - [FakerPHP mogelijkheden](https://fakerphp.github.io/formatters/)

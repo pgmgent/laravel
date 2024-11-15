@@ -91,7 +91,7 @@ $projects = DB::table('projects')
                 ->get();
 ```
 
-[Een volledig overzicht van de mogelijkheden kan je terugvinden op de Laravel handleiding](https://laravel.com/docs/10.x/queries#limit-and-offset)
+[Een volledig overzicht van de mogelijkheden kan je terugvinden op de Laravel handleiding](https://laravel.com/docs/11.x/queries#limit-and-offset)
 
 ## Aanmaken van nieuwe records
 

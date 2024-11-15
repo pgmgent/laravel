@@ -12,6 +12,6 @@ Het MVC pattern wordt vaak gebruikt bij webdevelopment frameworks. Dit bestaat u
 
 ### Meer info
 
-- [Routing](https://laravel.com/docs/10.x/routing)
-- [Eloquent ORM](https://laravel.com/docs/10.x/eloquent)
-- [Blade templates](https://laravel.com/docs/10.x/blade)
+- [Routing](https://laravel.com/docs/11.x/routing)
+- [Eloquent ORM](https://laravel.com/docs/11.x/eloquent)
+- [Blade templates](https://laravel.com/docs/11.x/blade)

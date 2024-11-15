@@ -46,4 +46,4 @@ In je view definieer je welke layout je wenst te gebruiken en vul je de inhoud i
 @endsection
 ```
 
-[Blade templates](https://laravel.com/docs/10.x/blade)
+[Blade templates](https://laravel.com/docs/11.x/blade)

@@ -52,7 +52,7 @@ Schema::table('projects', function (Blueprint $table) {
 });
 ```
 
-(Meer info in de handleiding van Laravel)[https://laravel.com/docs/10.x/migrations]
+(Meer info in de handleiding van Laravel)[https://laravel.com/docs/11.x/migrations]
 
 ## Veel-op-veel relatie
 
