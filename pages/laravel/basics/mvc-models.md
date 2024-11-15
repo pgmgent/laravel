@@ -8,7 +8,7 @@ Daarna hebben we de migration scripts uitgevoerd via `ddev artisan migrate`. Bek
 
 We kunnen nu zelf migrations schrijven ofwel bestaande tabellen importeren of aanmaken rechtstreeks in de database.
 
-Voor we migrations zelf gaan schrijven zullen we eerst eens een eigen tabel maken via een DBMS zoals MySQLWorkbench. (Voer de SQL statements uit die je onderaan deze pagina kan vinden)[#courses-sql].
+Voor we migrations zelf gaan schrijven zullen we eerst eens een eigen tabel maken via een DBMS zoals MySQLWorkbench. [Voer de SQL statements uit die je onderaan deze pagina kan vinden](#courses-sql).
 
 ## Model aanmaken
 
@@ -17,6 +17,7 @@ Daarna kunnen we ons eerste model aanmaken en afleiden van een basis Model. Hier
 Maak de model `Course.php` aan in de folder `/app/Models/` met onderstaande code.
 
 ```php
+<?php
 namespace App\Models;
  
 use Illuminate\Database\Eloquent\Model;
@@ -29,14 +30,15 @@ class Course extends Model
 
 Het basis model gaat uit van de tabel `courses` (Class name in onderkast + 's') en de primary key `id`.
 
-> Indien je dit anders wenst dan moet je dit definiëren aan het begin van je model.
+> Indien je wenst af te wijken van de standaard dan moet je dit definiëren aan het begin van je model.
 > ```
 >    protected $table = 'my_courses';
 >    protected $primaryKey = 'course_id';
 >```
 
+## Eloquent ORM
 
-Via de Eloquent ORM kan je nu data ophalen via static functies van je model. (Meer info over de mogelijkheden)[https://laravel.com/docs/11.x/eloquent] of hieronder enkele die je kan testen binnen de courses tabel en Course model.
+Via de Eloquent ORM kan je nu data ophalen via static functies van je model. [Meer info over de mogelijkheden](https://laravel.com/docs/11.x/eloquent) of hieronder enkele die je kan testen binnen de courses tabel en Course model.
 
 ```php
 //Alle records ophalen
@@ -52,7 +54,36 @@ $courses = Course::where('teacher_short', '=', 'DDW')->get();
 var_dump($courses);
 ```
 
+## Model aanroepen vanuit Controller en data tonen in de view
+
 Pas nu de Controller aan zodat je de inhoud kan doorgeven aan de View. In de view moet je de inhoud ook ophalen.
+
+``` php
+class CourseController extends Controller
+{
+    public function index() {
+        $courses = Course::all();
+        
+        return view('course.list', [
+            'courses' => $courses
+        ]);
+    }
+```
+
+In de `resources/views/course/list.blade.php` kan je nu via blade een lus schrijven over de array `$courses` :
+
+``` blade
+<x-layout>
+    <h1>PGM Courses</h1>
+    <ul>
+        @foreach ($courses as $course)
+            <li><a href="/course/{{ $course->id }}">{{ $course->name }}</a></li>
+        @endforeach
+    </ul>
+</x-layout>
+```
+
+Doe nu hetzelfde voor de detail pagina en maak gebruik van de `Course::find($id)` method om 1 course op de halen.
 
 ## Courses SQL
 
