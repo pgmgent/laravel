@@ -31,5 +31,5 @@ use Illuminate\Support\Facades\App;
 App::setLocale('nl');
 ```
 
-[Lees meer over Lokalisatie](https://laravel.com/docs/11.xlocalization)
+[Lees meer over Lokalisatie](https://laravel.com/docs/11.x/localization)
 

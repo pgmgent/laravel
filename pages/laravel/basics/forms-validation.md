@@ -162,7 +162,7 @@ class ProjectController extends Controller
 }
 ```
 
-[Een volledig overzicht van Form validation.](https://laravel.com/docs/11.xvalidation)
+[Een volledig overzicht van Form validation.](https://laravel.com/docs/11.x/validation)
 
 ## Een-op-veel relatie
 

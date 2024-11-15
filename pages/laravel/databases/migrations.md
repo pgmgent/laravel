@@ -18,7 +18,7 @@ Om al eens op voorhand te kijken wat een migration zal uitvoeren van SQL queries
 ddev artisan migrate --pretend
 ```
 
-We moeten dus eerst nog enkele extra kolommen toevoegen vooraleer we de migration gaan uitvoeren. Bij iedere kolom moeten we het data type meegeven. (Bekijk hier het overzicht van datatypes)[https://laravel.com/docs/11.xmigrations#available-column-types].
+We moeten dus eerst nog enkele extra kolommen toevoegen vooraleer we de migration gaan uitvoeren. Bij iedere kolom moeten we het data type meegeven. (Bekijk hier het overzicht van datatypes)[https://laravel.com/docs/11.x/migrations#available-column-types].
 
 Dit gebeurd telkens in de up method.
 
