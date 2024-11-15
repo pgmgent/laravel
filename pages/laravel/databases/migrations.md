@@ -1,6 +1,6 @@
 # Migrations
 
-Via de ddev artisan van Laravel kan je migrations aanmaken en uitvoeren op je database.
+Via [Artisan van Laravel](/laravel/laravel/how-to/artisan) kan je migrations aanmaken en uitvoeren op je database.
 
 Maak een eerste migrations file aan via het commando
 
@@ -8,7 +8,7 @@ Maak een eerste migrations file aan via het commando
 ddev artisan make:migration create_projects_table
 ```
 
-Je zal merken dat eer een nieuwe php migration file is aangemaakt on `data/migrations/` met de timestamp.
+Je zal merken dat er een nieuwe php migration file is aangemaakt on `data/migrations/` met de timestamp.
 
 Als je deze zou uitvoeren dan zal deze een tabel projects aanmaken met een id en de timestamps created_at en updated_at.
 
@@ -44,11 +44,29 @@ ddev artisan migrate --pretend
 ddev artisan migrate
 ```
 
-Je kan nu meerdere migrations aanmaken per tabel. Maar je kan uiteraard ook aanpassingen doen aan een bestaande tabel. Bijvoorbeeld het toevoegen van een extra kolom.
+## Een bestaande tabel updaten
+
+Je kunt meerdere migrations aanmaken per tabel, maar het is ook mogelijk om aanpassingen te maken aan een bestaande tabel. Dit is handig voor het toevoegen van nieuwe kolommen, het wijzigen van kolomtypes of het verwijderen van kolommen.
+
+Stel dat je een extra kolom year wilt toevoegen aan de projects-tabel. Dit kun je doen door een nieuwe migration aan te maken:
+
+``` shell
+ddev artisan make:migration add_year_column_to_projects_table --table=projects
+```
+
+In het aangemaakte bestand voeg je de gewenste wijzigingen toe in de up-methode:
 
 ``` php 
 Schema::table('projects', function (Blueprint $table) {
-    $table->integer('year');
+    $table->integer('year')->after('description'); // De kolom komt na 'description'
+});
+```
+
+In de down-methode specificeer je hoe de wijziging ongedaan moet worden gemaakt:
+
+``` php
+Schema::table('projects', function (Blueprint $table) {
+    $table->dropColumn('year');
 });
 ```
 
