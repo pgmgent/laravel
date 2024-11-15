@@ -44,7 +44,7 @@ Het basis model gaat uit van de tabel `courses` (Class name in onderkast + 's') 
 >```
 
 
-Via de Eloquent ORM kan je nu data ophalen via static functies van je model. (Meer info over de mogelijkheden)[https://laravel.com/docs/9.x/eloquent] of hieronder enkele die je kan testen binnen de courses tabel en Course model.
+Via de Eloquent ORM kan je nu data ophalen via static functies van je model. (Meer info over de mogelijkheden)[https://laravel.com/docs/11.xeloquent] of hieronder enkele die je kan testen binnen de courses tabel en Course model.
 
 ```php
 //Alle records ophalen
