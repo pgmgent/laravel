@@ -96,8 +96,6 @@ module.exports = Object.freeze({
               "/laravel/basics/mvc-layouts",
               "/laravel/basics/mvc-controller",
               "/laravel/basics/mvc-models",
-              "/laravel/basics/forms-validation",
-              "/laravel/basics/assets",
             ],
           },
           {
@@ -118,7 +116,7 @@ module.exports = Object.freeze({
             children: [
               "/laravel/advanced/relations",
               "/laravel/advanced/assets",
-              "/laravel/advanced/form-validation",
+              "/laravel/advanced/forms-validation",
               "/laravel/advanced/authentication",
               "/laravel/advanced/file-storage",
               "/laravel/advanced/localization",
