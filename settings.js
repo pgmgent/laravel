@@ -114,6 +114,7 @@ module.exports = Object.freeze({
             title: "Dieper in op Laravel",
             path: "/laravel/advanced/",
             children: [
+              "/laravel/advanced/components",
               "/laravel/advanced/relations",
               "/laravel/advanced/assets",
               "/laravel/advanced/forms-validation",
