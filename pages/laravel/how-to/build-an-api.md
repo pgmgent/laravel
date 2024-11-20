@@ -4,11 +4,17 @@ Een gebruiksvriendelijke applicatie bestaat zeker en vast uit een duidelijke, ov
 
 Laravel voorziet voor ons al standaard een manier om onze API te structureren en splitsen van onze gewone 'web' requests.
 
-De routes van de API kan je terugvinden onder `routes/api.php`. Elke route die hierin gedefinieerd staat kan je aanroepen vanaf `/api`.
+Installeer de api router via artisan:
+
+```shell
+ddev artisan install:api
+```
+
+De routes van de API kan je nu aanmaken onder `routes/api.php`. Elke route die hierin gedefinieerd staat kan je aanroepen vanaf `/api`.
 
 Hier kan je uiteraard ook weer kiezen tussen de get of post methode.
 
-Onderstaande voorbeeld maakt een API route aan die bereikbaar is via /api/users/{zoek}
+Onderstaande voorbeeld maakt een API route aan die bereikbaar is via `/api/users/zoekterm`
 
 ``` php
 // Onderstaande route kan je bijvoorbeeld aanroepen via: /api/users/di
