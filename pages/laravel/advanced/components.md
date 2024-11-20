@@ -1,48 +1,94 @@
 # Components
 
-In het onderdeel van layouts hebben we reeds een component aangemaakt voor een layout. Hierdoor konden we de `<x-layout></x-layout>` gebruiken om een volledige layout in te laden.
+In het onderdeel over layouts hebben we eerder een component aangemaakt om een layout te gebruiken met `<x-layout></x-layout>`. Op dezelfde manier kun je kleinere componenten maken om herbruikbare stukjes code te creëren. In het volgende voorbeeld maken we een zoekformulier dat eenvoudig opnieuw kan worden gebruikt.
 
-We kunnen deze techniek ook gebruiken om kleinere componenten te maken. In onderstaande voorbeeld maken we een zoek formulier die we kunnen hergebruiken.
+## Een component aanmaken
 
-Maak een component aan `searchform.blade.php` aan in `resources/views/components`. Met onderstaande code:
+Maak een componentbestand genaamd `searchform.blade.php` in de map `resources/views/components` met de volgende code:
 
-```
+``` html
 <form>
     <input type="text" name="search">
     <button type="submit">Zoeken</button>
 </form>
 ```
 
-Deze code kunnen we nu inladen in een view of andere component zoals de layout met onderstaande code
+Deze code kunnen we nu inladen in een view of andere component zoals de layout met onderstaande code:
 
-```
+``` html
 <x-searchform></x-searchform>
 ```
 
-Als we gegevens willen doorgeven naar het component dan kan dit op 2 manieren. Je maakt een attribuut aan en stuurt zo een waarde mee, of je plaatst de waarde tussen de open en sluit tag zelf.
+## Gegevens doorsturen naar een component
+Je kunt op twee manieren gegevens doorgeven aan een component:
 
-```
-<x-searchform >
+1. Door attributen te gebruiken en waarden mee te geven.
+1. Door de inhoud tussen de open en sluit tag te plaatsen.
+   
+``` html
+<x-searchform buttonText="Filter">
     Dit is de zoekopdracht
 </x-searchform>
 ```
 
-In het component kan je de attributen aanroepen als (php) variabele. De inhoud van de component zelf kan je ophalen via de variabele `$slot`. Let ook op dat je, vooral bij attributen, ook een default waarde geeft. Anders krijg je een foutmelding als het attribuut niet werd meegegeven met het component. 
+In het component kun je attributen als PHP-variabelen aanroepen. De inhoud tussen de tags wordt opgehaald met de variabele `$slot`. Zorg ervoor dat je, vooral bij attributen, een standaardwaarde instelt om fouten te voorkomen als een attribuut niet wordt meegegeven.
 
-```
+
+``` html
 <form>
     <input type="text" name="{{ $slot }}">
     <button type="submit">{{ $buttonText ?? 'Zoeken'}}</button>
 </form>
 ```
 
-### Groeperen in folders
+### PHP variabelen doorsturen
 
-Als je heel veel componenten hebt dan kan je folders maken om deze componenten logisch te groeperen. Ons aangemaakt component zouden we ook kunnen plaatsen in de folder forms `resources/views/components/forms/searchform.blade.php`.
+Er zijn 2 manieren om bijvoorbeeld een array door te sturen naar een component
 
-Bij het aanroepen moet je dan ook de folderstructuur meegeven.
+1. Direct een array meegeven:
 
+``` html
+<x-itemlist :items="['Item 1', 'Item 2', 'Item 3']"></x-itemlist>
 ```
+
+2. Vanuit de controller:
+Stel dat je in je controller een array hebt gedefinieerd en deze doorgeeft aan je Blade-template:
+
+``` php
+public function show()
+{
+    $items = ['Item 1', 'Item 2', 'Item 3', 'Item 4'];
+    return view('your-view', compact('items'));
+}
+```
+
+De blade ziet er dan zo uit:
+
+``` html
+<x-itemlist :items="$items"></x-itemlist>
+```
+
+Binnen je component kan je deze dan gebruiken als array:
+
+``` html
+<ul>
+@foreach $items as $key => $item
+    <li>{{ $item }}</li>
+@endforeach
+</ul>
+```
+
+Het dubbele punt voor de attributenaam geeft aan dat de waarde als een PHP-expressie moet worden geïnterpreteerd. Dit is nodig om ervoor te zorgen dat de array correct wordt doorgegeven in plaats van als een string.
+
+## Componenten groeperen in mappen
+
+Als je veel componenten hebt, kun je ze in mappen groeperen. Door componenten te groeperen en herbruikbare elementen te creëren, houd je je codebase georganiseerd en onderhoudbaar.
+
+Je kunt bijvoorbeeld het zoekformuliercomponent plaatsen in een map forms met de naam `resources/views/components/forms/searchform.blade.php`.
+
+Bij het aanroepen van dit component moet je de mapstructuur aangeven:
+
+``` html
 <x-forms.searchform buttonText="Filteren">
     Dit is de zoekopdracht
 </x-forms.searchform>
