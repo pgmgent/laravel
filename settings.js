@@ -132,10 +132,6 @@ module.exports = Object.freeze({
               "/laravel/how-to/laravel-ui"
             ],
           },
-          {
-             title: "Cheat Sheet",
-             path: "/laravel/cheatsheet/",
-          },
         ],
       },
     ],
