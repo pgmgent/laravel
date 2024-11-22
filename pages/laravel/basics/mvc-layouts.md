@@ -4,10 +4,9 @@ We hebben nu al enkele views aangemaakt, telkens met hun eigen HTML, head en bod
 
 De oplossing hiervoor zijn Laravel componenten. Je kan een component aanmaken voor zowel kleine onderdelen van je website zoals een zoekbalk als voor een volledige layout.
 
-Om een layout component aan te maken, creëer dan volgende bestand: `resources/views/layouts/app.blade.php` met een basis HTML en 1 of meerdere placeholders.
+Om een layout component aan te maken, creëer dan volgende bestand: `resources/views/components/layout.blade.php` met een basis HTML en 1 of meerdere placeholders.
 
 ```html
-<!-- resources/views/components/layout.blade.php -->
  
 <!DOCTYPE html>
 <html lang="en">
