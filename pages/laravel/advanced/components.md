@@ -36,7 +36,7 @@ In het component kun je attributen als PHP-variabelen aanroepen. De inhoud tusse
 
 ``` html
 <form>
-    <input type="text" name="{{ $slot }}">
+    <input type="text" name="search" value="{{ $slot }}">
     <button type="submit">{{ $buttonText ?? 'Zoeken'}}</button>
 </form>
 ```
