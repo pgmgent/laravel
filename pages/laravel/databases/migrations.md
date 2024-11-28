@@ -84,7 +84,7 @@ Dus als we medewerkers willen koppelen aan een project dan zullen we een employe
 Schema::create('employee_project', function (Blueprint $table) {
     $table->id();
     $table->foreignId('employee_id');
-    $table->foreignId('teacher_id');
+    $table->foreignId('project_id');
     $table->timestamps(); //optioneel
 });
 ```
@@ -95,7 +95,7 @@ Het is ook mogelijk om een combined primary key te maken in plaats van een nieuw
 ``` php
 Schema::create('employee_project', function (Blueprint $table) {
     $table->foreignId('employee_id');
-    $table->foreignId('teacher_id');
+    $table->foreignId('project_id');
     $table->primary(['employee_id', 'project_id']);
 });
 ```

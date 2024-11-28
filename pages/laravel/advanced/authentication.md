@@ -72,23 +72,24 @@ echo $user->email;
 
 We hebben al gezien dat de middleware er kan voor zorgen dat er gekeken wordt of een bezoeker al dan niet is ingelogd.
 
-Maar meestal willen we ook gaan valideren of een ingelogde gebruiker bepaalde rechten heeft.
+Maar je kan ook je eigen middleware maken, hieronder een (misschien wat absurd) voorbeeld waarbij we gaan controleren via middleware of een gebruiker George heet.
 
-Hiervoor kunnen we zelf een middleware aanmaken. Maak in eerste instantie de middleware class aan `app/Http/Middleware/AuthenticateAdmin.php` met onderstaande voorbeeldcode. Hierbij zal een bezoeker gecontroleerd worden of hij is ingelogd en de naam 'George' heeft.
+Maak in eerste instantie de middleware class aan `app/Http/Middleware/George.php` met onderstaande voorbeeldcode. Hierbij zal een bezoeker gecontroleerd worden of die is ingelogd en de naam 'George' heeft.
 
 ``` php
 
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Http\Request;
 
-class AuthenticateAdmin extends Middleware
+class George
 {
-    public function handle($request, Closure $next, ...$guards)
+    public function handle(Request $request, Closure $next) : Response
     {
+        // Controleer of de gebruiker ingelogd is en of de naam 'George' is
         if (! $request->user() || $request->user()->name !== 'George') {
-            return redirect('/');
+            abort(403, 'You are not authorized to access this resource.');
         }
 
         return $next($request);
@@ -96,20 +97,32 @@ class AuthenticateAdmin extends Middleware
 }
 ```
 
-Daarna moeten we deze middleware toevoegen aan de lijst van routeMiddleware in `app/Http/Kernel.php`.
 
-``` php
- protected $routeMiddleware = [
-    'auth' => \App\Http\Middleware\Authenticate::class,
-    'auth.admin' => \App\Http\Middleware\AuthenticateAdmin::class,
-    ...
-];
-```
 
 Vanaf nu kunnen we deze middleware gaan gebruiken. De meest eenvoudige manier is om dit rechtstreeks in onze route te doen. Hieronder een voorbeeld van een pagina die dus enkel bereikbaar is voor ingelogde personen met de naam 'George'.
 
 ``` php
+
+use App\Http\Middleware\George;
+
+
 Route::get('/george', function () {
     return 'Enkel voor ingelogde gebruikers met de naam George';
-})->middleware('auth.admin');
+})->middleware(Georde::class);
 ```
+
+## Middleware globaal definiëren 
+
+Willen we de middleware toepassen voor iedere request?Dan kan dit ook door het toe te voegen in het bootstrap/app.php bestand:
+
+Let wel op dat je dit niet doet om te controleren of je al dan niet bent ingelogd want ook de login en register route zal dan gecontroleerd worden hierop.
+
+```php
+use App\Http\Middleware\EnsureTokenIsValid;
+ 
+->withMiddleware(function (Middleware $middleware) {
+     $middleware->append(EnsureTokenIsValid::class);
+})
+```
+
+[Alle info over middleware...](https://laravel.com/docs/11.x/middleware#main-content)
