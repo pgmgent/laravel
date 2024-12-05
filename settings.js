@@ -94,8 +94,15 @@ module.exports = Object.freeze({
               "/laravel/basics/routing",
               "/laravel/basics/mvc-views",
               "/laravel/basics/mvc-layouts",
+              "/laravel/basics/components",
               "/laravel/basics/mvc-controller",
               "/laravel/basics/mvc-models",
+              "/laravel/basics/relations",
+              "/laravel/basics/assets",
+              "/laravel/basics/authentication",
+              "/laravel/basics/forms-validation",
+              "/laravel/basics/file-storage",
+              "/laravel/basics/localization",
             ],
           },
           {
@@ -111,25 +118,11 @@ module.exports = Object.freeze({
             ],
           },
           {
-            title: "Dieper in op Laravel",
-            path: "/laravel/advanced/",
-            children: [
-              "/laravel/advanced/components",
-              "/laravel/advanced/relations",
-              "/laravel/advanced/assets",
-              "/laravel/advanced/forms-validation",
-              "/laravel/advanced/authentication",
-              "/laravel/advanced/file-storage",
-              "/laravel/advanced/localization",
-            ],
-          },
-          {
             title: "How to",
             path: "/laravel/how-to/",
             children: [
               "/laravel/how-to/artisan",
               "/laravel/how-to/build-an-api",
-              "/laravel/how-to/laravel-ui"
             ],
           },
         ],

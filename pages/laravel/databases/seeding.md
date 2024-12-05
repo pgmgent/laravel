@@ -23,7 +23,7 @@ public function definition(): array
     return [
         'name' => fake()->name(),
         'description' => fake()->text(),
-        'email' => fake()->safeEmail(),
+        'publish' => fake()->boolean(),
         'created_at' => fake()->dateTimeInInterval('-50 week', '+50 week'),
     ];
 }
@@ -46,7 +46,7 @@ class Project extends Model  {
 
     use HasFactory;
 
-    ...
+    
 }
 ```
 
