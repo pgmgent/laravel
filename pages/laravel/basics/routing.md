@@ -1,4 +1,4 @@
-# MVC - Routing
+# Routing
 
 Stel, willen deze url opvangen:  
 [http://127.0.0.1:8000/hello](http://127.0.0.1:8000/hello)

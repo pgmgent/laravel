@@ -80,13 +80,13 @@ module.exports = Object.freeze({
     ],
     "/laravel/": [
       {
-        title: "Laravel MVC Framework",
+        title: "Laravel",
         path: "/laravel/",
         collapsable: false,
         sidebarDepth: 1,
         children: [
           {
-            title: "De basis",
+            title: "Laravel MVC",
             path: "/laravel/basics/",
             children: [
               "/laravel/basics/installation",

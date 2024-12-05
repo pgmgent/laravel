@@ -1,4 +1,4 @@
-# MVC - Controller
+# Controller
 
 Je zou, in theorie, alle functionaliteit kunnen schrijven in de Routing config maar dat is niet de bedoeling. Dat is het werk van een Controller binnen een MVC framework.
 

@@ -1,4 +1,4 @@
-# MVC - Views
+# Views
 
 Deze view kan je terugvinden onder `/resources/views`, als je dus `view('welcome')` aanroept zal de `welcome.blade.php` uitgevoerd worden.
 

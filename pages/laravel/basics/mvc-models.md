@@ -1,4 +1,4 @@
-# MVC - Model
+# Model
 
 In een MVC zijn de models verantwoordelijk voor de CRUD. Het toevoegen, lezen, aanpassen en verwijderen van data. Deze data zal meestal opgehaald worden uit een database. In combinatie met Laravel is dit meestal MySQL. Maar dat kan ook een andere vorm van database zijn of zelf een connectie met een externe API of een gewoon JSON bestand.
 
