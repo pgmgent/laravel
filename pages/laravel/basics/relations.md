@@ -1,4 +1,4 @@
-# Werken met relaties
+# Relaties
 
 ## One-to-Many
 

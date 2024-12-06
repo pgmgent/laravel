@@ -1,4 +1,4 @@
-# Formulieren
+# Records aanmaken of editeren 
 
 We kunnen nu ook templates maken waarin formulier voorkomen. We gaan er vanuit gaan dat, indien we gegevens willen ophalen, we best de GET methode gebruiken. En als we gegevens naar de database willen sturen de POST van toepassing is. Uiteraard zijn er steeds uitzonderingen op deze regel. Hieronder gaan we verder in op het versturen van gegevens die in de database zullen worden opgeslagen en dus de POST methode zal gebruikt worden.
 

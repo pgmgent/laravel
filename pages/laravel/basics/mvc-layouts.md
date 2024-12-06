@@ -1,4 +1,4 @@
-# layout component
+# Layouts
 
 We hebben nu al enkele views aangemaakt, telkens met hun eigen HTML, head en body. Qua onderhoud niet zo handig als we een aanpassing moeten doen of een extra CSS of JS bestand moeten linken.
 

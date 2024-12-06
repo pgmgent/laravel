@@ -41,7 +41,7 @@ Na het verplaatsen moeten we de database nog aanpassen en de bestandsnaam opslaa
 
 Hieronder zie je de aangepaste code van de edit method. Waarbij eerst het bestand wordt verplaatst naar de Storage en daarna meegegeven wordt om op te slaan in de database. Let wel dat je dit enkel doet als er ook effectief een file wordt opgeladen. Anders maak je het veld het editeren bij iedere aanpassing leeg.
 
-```
+```php
 public function save(Request $request, $id = null) {
     $project = ($id) ? Project::findOrFail($id) : new Project();
 
@@ -62,8 +62,6 @@ public function save(Request $request, $id = null) {
     }
     $success = $project->save();
 
-    $project->users()->sync($request->input('users'));
-
     return redirect('/project/' . $project->id);   
 }
 ```
@@ -71,5 +69,4 @@ public function save(Request $request, $id = null) {
 Wil je zelf kiezen welke bestandsnaam de file moet krijgen dan kan dit via de method `storeAs`. 
 
 [Meer mogelijkheden kan je bekijken via de Laravel documentatie](https://laravel.com/docs/11.x/filesystem#file-uploads)
-
 
