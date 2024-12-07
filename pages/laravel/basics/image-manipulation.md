@@ -1,18 +1,36 @@
 # Afbeeldingen manipuleren
 
-Omdat we niet steeds de hoge resolutie afbeelding willen gebruiken omdat dit onze applicatie te zwaar maakt moeten we ervoor zorgen dat afbeeldingen geschaald worden naar een kleinere versie, eventueel ook met een betere compressie, zonder al te veel kwaliteitsverlies.
+Omdat we niet steeds de hoge resolutie afbeelding willen gebruiken omdat dit onze applicatie te zwaar maakt moeten we ervoor zorgen dat afbeeldingen geschaald worden naar een kleinere versie, eventueel ook met een betere compressie, zonder al te veel kwaliteitsverlies. De beste compressie kunnen we hedendaags bereiken met het webp formaat.
 
-De maximale breedte is natuurlijk verschillend per website en kan ook nog eens verschillend zijn per pagina. En dan moeten we misschien ook nog rekening houden met retina schermen.
+De maximale breedte/hoogte is natuurlijk verschillend per website en kan ook nog eens verschillend zijn per pagina. En dan moeten we misschien ook nog rekening houden met retina schermen. Je zal dus meerdere versies nodig hebben per afbeelding.
 
 
-We gebruiken de composer package van Spatie/image om afbeeldingen te manipuleren.
+## Spatie/image
+
+Om afbeeldingen te manipuleren gebruiken we de composer package van Spatie/image.
+
+```
+ddev composer require spatie/image
+```
+
+Daarna kan je verschillende manipulaties uitvoeren zoals schalen, versnijden, verscherpen, roteren, kleur veranderen en nog veel meer. Alle mogelijkheden kan je terugvinden op [https://spatie.be/docs/image/v3/introduction]
+
+## Voorbeeld
+
+```php
+use Spatie\Image\Image;
+
+Image::load('voorbeeld.jpg')
+    ->resize(800, 0);
+    ->greyscale()
+    ->save('voorbeeld_gray_w800.webp');
+```
 
 ## Automatische resizer
 
-Hier zie je een voorbeeld code van een controller die afbeeldingen kan schalen en deze gaat teruggeven. Om het geheel performant te maken wordt de gegenereerde afbeelding opgeslagen in een cache folder.
+Hieronder zie je een voorbeeld code van een controller die afbeeldingen kan schalen en deze als response terug stuurt. Om het geheel performant te maken wordt de gegenereerde afbeelding opgeslagen in een cache folder.
 
 ```php
-
 <?php 
 namespace App\Http\Controllers;
 
@@ -52,13 +70,13 @@ class ImageController extends Controller
 }
 
 ```
-Maak nu een route aan:
+Maak een route aan om deze method te kunnen aanpspreken.
 
 ```php
 Route::get('/image_resize/{file}/{width}/{height?}', [ImageController::class, 'resize']);
 ```
 
-Nu kan je deze aanroepen in een view als volgt:
+Je kan deze route nu gebruiken om jouw afbeelding op te halen en weer te geven in een image element.
 
 ```html
 <!--Hier wordt dan de image van een post geplaatst met een breedte van 400px -->
