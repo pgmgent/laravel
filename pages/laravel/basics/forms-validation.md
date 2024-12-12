@@ -8,7 +8,7 @@ Om je te wapenen tegen CSRF heeft Laravel een middleware voorzien om de request 
 
 Bij het aanmaken van een formulier moet je dan wel een include doen via `@csrf`. Dit zal een soort sessie ID meegeven als hidden input in je formulier. Hierop zal Laravel dan controleren of de request wel degelijk van je eigen website komt en niet van een externe (fishing) website.
 
-```
+```html
 <form method="POST">
     @csrf
 </form>
@@ -20,7 +20,7 @@ Bij het aanmaken van een formulier moet je dan wel een include doen via `@csrf`.
 
 Deze template voorzie je van een formulier om de content aan te passen. **(Vergeet de csrf niet)**
 
-```
+```html
 <x-layout>
 <h1>Edit Project</h1>
 <form method="POST">
@@ -44,7 +44,7 @@ Deze template voorzie je van een formulier om de content aan te passen. **(Verge
 
 Zoals je hieronder kan zien maak ik zowel een `get` als `post` route aan. Elk verwijzen ze naar een andere method binnen de ProjectConroller.
 
-```
+```php
 Route::get('/project/{id}/edit', [ProjectController::class, 'edit']);
 Route::post('/project/{id}/edit', [ProjectController::class, 'save']);
 ```
@@ -53,7 +53,7 @@ Route::post('/project/{id}/edit', [ProjectController::class, 'save']);
 
 Maak onderstaande methods aan in de `ProjectController` class. Pas de waardes aan van je object en gebruik de `save()` method, van ons ORM, om de aanpassingen op te slaan in de database.
 
-```
+```php
 public function edit($id) {
     $project = Project::findOrFail($id);
 
@@ -84,14 +84,14 @@ Eerst en vooral moeten we ervoor zorgen dat we nieuwe routes aanmaken `/project/
 
 >**Let hierbij op dat deze boven de routes staan van `/project/{id}` anders zal hij 'create' aanzien als een id dat doorgegeven moet worden naar de detail controller.**
 
-```
+```php
 Route::get('/project/create', [ProjectController::class, 'edit']);
 Route::post('/project/create', [ProjectController::class, 'save']);
 ```
 
 Als je dit gaat testen zal je zien dat dit de foutmelding `Too few arguments to function` zal genereren. Dit kunnen we oplossen door een standaard waarde te geven aan de `$id` parameter bij de edit method. Daarna moeten we dan ook controleren op deze `$id`. Indien deze niet is meegegeven dient er een nieuw object te worden aangemaakt van die class.
 
-```
+```php
 public function edit($id = null) {
     $project = ($id) ? Project::findOrFail($id) : new Project();
 
@@ -109,7 +109,7 @@ Je kan er nu ook voor zorgen dat er, bij de creatie van een project, een duideli
 
 Gebruik hiervoor dezelfde verkorte schrijfwijze voor een if-then-else statement.
 
-```
+```html
 <h1>{{ ($project->id) ? 'Edit project' : 'Create project' }}</h1>
 ```
 
@@ -129,7 +129,7 @@ Een oplossing hiervoor is het gebruik van een mask, om de gebruiker te begeleide
 
 Eens alles door de front-end op een correcte manier werd gevalideerd zal het formulier (via de POST) doorgestuurd worden naar de server. Nu is het aan onze controller om de data te valideren.
 
-```
+```php
 <?php
  
 namespace App\Http\Controllers;
@@ -170,7 +170,7 @@ Indien er een een-op-veel relatie ligt tussen verschillende tabellen. Is het nie
 
 Meestal zal je hiervoor gebruik maken in je formulier van een `<select>` input.
 
-```
+```html
 <label>    
     Customer:
     <select name="customer_id">
@@ -186,7 +186,7 @@ Meestal zal je hiervoor gebruik maken in je formulier van een `<select>` input.
 
 Bij een veel op veel relatie kan je ook een `select` gebruiken met het attribuut `multiple`. Maar dit is niet zo gebruiksvriendelijk. Een betere optie is om checkboxen te voorzien. 
 
-```
+```html
 <p>
 Users:
 @foreach($users as $user)
@@ -207,7 +207,7 @@ Hieronder zie je hoe je de synchronisatie van de tussen-tabel moet doen. Dit doe
 
 > Let wel op dat dit, bij nieuwe projecten, gebeurt nadat je het project hebt opgeslagen. Anders kan de relatie niet gemaakt worden omdat de `$project->id` nog niet toegekend is.
 
-```
+```php
 public function save(Request $request, $id = null) {
     ...
 
