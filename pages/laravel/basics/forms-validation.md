@@ -21,7 +21,7 @@ Bij het aanmaken van een formulier moet je dan wel een include doen via `@csrf`.
 Deze template voorzie je van een formulier om de content aan te passen. **(Vergeet de csrf niet)**
 
 ```
-@section('content')
+<x-layout>
 <h1>Edit Project</h1>
 <form method="POST">
     @csrf
@@ -37,7 +37,7 @@ Deze template voorzie je van een formulier om de content aan te passen. **(Verge
 
     <button type="submit">Aanpassen</button>
 </form>
-@endsection
+</x-layout>
 ```
 
 ### Stap 2: Routes aanmaken. 
