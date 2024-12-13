@@ -102,13 +102,12 @@ class George
 Vanaf nu kunnen we deze middleware gaan gebruiken. De meest eenvoudige manier is om dit rechtstreeks in onze route te doen. Hieronder een voorbeeld van een pagina die dus enkel bereikbaar is voor ingelogde personen met de naam 'George'.
 
 ``` php
-
 use App\Http\Middleware\George;
 
 
 Route::get('/george', function () {
     return 'Enkel voor ingelogde gebruikers met de naam George';
-})->middleware(Georde::class);
+})->middleware(George::class);
 ```
 
 ## Middleware globaal definiëren 
