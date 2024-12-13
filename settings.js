@@ -108,7 +108,7 @@ module.exports = Object.freeze({
             ],
           },
           {
-            title: "Werken met een database",
+            title: "Database",
             path: "/laravel/databases/",
             children: [
               "/laravel/databases/connecting",
