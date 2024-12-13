@@ -99,6 +99,7 @@ module.exports = Object.freeze({
               "/laravel/basics/mvc-models",
               "/laravel/basics/relations",
               "/laravel/basics/authentication",
+              "/laravel/basics/pagination",
               "/laravel/basics/assets",
               "/laravel/basics/file-storage",
               "/laravel/basics/image-manipulation",
