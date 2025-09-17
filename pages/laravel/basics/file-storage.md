@@ -68,5 +68,5 @@ public function save(Request $request, $id = null) {
 
 Wil je zelf kiezen welke bestandsnaam de file moet krijgen dan kan dit via de method `storeAs`. 
 
-[Meer mogelijkheden kan je bekijken via de Laravel documentatie](https://laravel.com/docs/11.x/filesystem#file-uploads)
+[Meer mogelijkheden kan je bekijken via de Laravel documentatie](https://laravel.com/docs/12.x/filesystem#file-uploads)
 

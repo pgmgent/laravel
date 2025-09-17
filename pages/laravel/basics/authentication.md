@@ -124,4 +124,4 @@ use App\Http\Middleware\EnsureTokenIsValid;
 })
 ```
 
-[Alle info over middleware...](https://laravel.com/docs/11.x/middleware#main-content)
+[Alle info over middleware...](https://laravel.com/docs/12.x/middleware#main-content)

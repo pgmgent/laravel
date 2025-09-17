@@ -42,4 +42,4 @@ In je view definieer je welke layout je wenst te gebruiken en vul je de inhoud i
 </x-layout>
 ```
 
-[Blade Layout components](https://laravel.com/docs/11.x/blade#building-layouts)
+[Blade Layout components](https://laravel.com/docs/12.x/blade#building-layouts)
