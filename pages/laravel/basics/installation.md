@@ -7,7 +7,7 @@ mkdir my-laravel-app
 cd my-laravel-app
 ddev config --project-type=laravel --docroot=public
 ddev start
-ddev composer create "laravel/laravel:^11"
+ddev composer create-project "laravel/laravel:^12"
 ddev composer install
 ```
 Maak een duplicaat van de `.env.example` en hiernoem deze naar `.env`
@@ -22,7 +22,7 @@ DB_USERNAME=db
 DB_PASSWORD=db
 ```
 
-Zoals je kan zien in de .env is er geen `APP_KEY` ingevuld. Genereer deze met onderstaande code.
+Indien er in de .env geen `APP_KEY` ingevuld. Genereer deze met onderstaande code.
 
 ``` shell
 ddev artisan key:generate
