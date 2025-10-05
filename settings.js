@@ -117,6 +117,7 @@ module.exports = Object.freeze({
               "/laravel/databases/eloquent",
               "/laravel/databases/relations",
               "/laravel/databases/soft_delete",
+              "/laravel/databases/filament",
             ],
           },
           {
