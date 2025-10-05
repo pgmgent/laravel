@@ -98,7 +98,6 @@ module.exports = Object.freeze({
               "/laravel/basics/mvc-controller",
               "/laravel/basics/mvc-models",
               "/laravel/basics/relations",
-              "/laravel/basics/authentication",
               "/laravel/basics/pagination",
               "/laravel/basics/assets",
               "/laravel/basics/file-storage",
@@ -126,6 +125,8 @@ module.exports = Object.freeze({
             children: [
               "/laravel/how-to/artisan",
               "/laravel/how-to/build-an-api",
+              "/laravel/how-to/authentication",
+
             ],
           },
         ],
