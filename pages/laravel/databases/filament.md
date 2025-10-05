@@ -1,4 +1,4 @@
-# Laravel backend met Filament
+# Laravel backoffice met Filament
 
 [Filament](https://filamentphp.com/) is een gratis en open-source admin panel voor Laravel. Het is eenvoudig te installeren en te gebruiken. Filament biedt een mooie interface om je database tabellen te beheren.
 
