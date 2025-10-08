@@ -71,6 +71,9 @@ return $table
             ]),
         ]);
 ```
+
+Alle mogelijkheden kan je terugvinden op de [Filament Table documentatie](https://filamentphp.com/docs/4.x/tables/overview).
+
 ### Form
 
 Onder `app/Filament/Resources/Projects/Forms/ProjectsForm.php` vind je de formulier definitie.
@@ -78,23 +81,23 @@ Onder `app/Filament/Resources/Projects/Forms/ProjectsForm.php` vind je de formul
 Hierin kan je de velden aanpassen die getoond worden in het formulier voor het aanmaken of bewerken van een record.
 
 ``` php
-return $form
-    ->schema([
-        Forms\Components\TextInput::make('name')
-            ->required()
-            ->maxLength(255),
-        Forms\Components\Textarea::make('description')
-            ->rows(5)
-            ->maxLength(65535),
-        Forms\Components\Toggle::make('publish')
-            ->required(),
-        Forms\Components\Select::make('customer_id')
-            ->relationship('customer', 'name')
-            ->required(),
+return $schema
+            ->components([
+                Filament\Forms\Components\TextInput::make('name')
+                    ->required()
+                    ->maxLength(255),
+                Filament\Forms\Components\Textarea::make('description')
+                    ->rows(5)
+                    ->maxLength(65535),
+                Filament\Forms\Components\Toggle::make('publish')
+                    ->required(),
+                Filament\Forms\Components\Select::make('customer_id')
+                    ->relationship('customer', 'name')
+                    ->required(),
     ]);
 ```
 
-Let op: je moet er nu ook voor zorgen dat de verschillende velden ingevuld worden in je model `app/Models/Project.php`. Voeg hiervoor de velden toe aan de `$fillable` property.
+**Let op:** je moet er nu ook voor zorgen dat de verschillende velden ingevuld worden in je model `app/Models/Project.php`. Voeg hiervoor de velden toe aan de `$fillable` property.
 
 ``` php
 protected $fillable = [
@@ -104,6 +107,11 @@ protected $fillable = [
     'customer_id',
 ];
 ```
+
+Alle mogelijkheden kan je terugvinden op de [Filament Form documentatie](https://filamentphp.com/docs/4.x/forms/overview).
+
+Tip: Je kan ook `use Filament\Forms\Components\TextInput;` toevoegen bovenaan. Dan kan je in plaats van `Filament\Forms\Components\TextInput::make('name')` gewoon `TextInput::make('name')` gebruiken.
+
 
 
 Voor meer informatie over het aanpassen van resources, kan je de [Filament documentatie](https://filamentphp.com/docs/4.x/admin/resources) raadplegen.
