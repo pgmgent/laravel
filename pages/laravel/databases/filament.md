@@ -41,29 +41,16 @@ Dit zal een nieuwe resource aanmaken in de map `app/Filament/Resources`. Je kan 
 
 ## Aanpassen van de resource
 Open de aangemaakte resource in `app/Filament/Resources/ProjectResource.php`.
-Je kan de velden aanpassen die getoond worden in de lijstweergave en in het formulier voor het aanmaken en bewerken van records.
+Daar zie je een verwijzing naar de `form` en `table` methoden.
+Hierin worden 2 aparte files aangeroepen die de formulieren en tabellen definiëren.
+
+### Table
+Onder `app/Filament/Resources/Projects/Tables/ProjectsTable.php` vind je de tabel definitie.
+
+Je kan de kolommen aanpassen die getoond worden in de lijstweergave van de records.
 
 ``` php
-public static function form(Form $form): Form
-{
-    return $form
-        ->schema([
-            Forms\Components\TextInput::make('name')
-                ->required()
-                ->maxLength(255),
-            Forms\Components\Textarea::make('description')
-                ->rows(5)
-                ->maxLength(65535),
-            Forms\Components\Toggle::make('publish')
-                ->required(),
-            Forms\Components\Select::make('customer_id')
-                ->relationship('customer', 'name')
-                ->required(),
-        ]);
-}
-public static function table(Table $table): Table
-{
-    return $table
+return $table
         ->columns([
             Tables\Columns\TextColumn::make('id')->sortable(),
             Tables\Columns\TextColumn::make('name')->searchable()->sortable(),
@@ -83,8 +70,41 @@ public static function table(Table $table): Table
                 Tables\Actions\DeleteBulkAction::make(),
             ]),
         ]);
-}
 ```
+### Form
+
+Onder `app/Filament/Resources/Projects/Forms/ProjectsForm.php` vind je de formulier definitie.
+
+Hierin kan je de velden aanpassen die getoond worden in het formulier voor het aanmaken of bewerken van een record.
+
+``` php
+return $form
+    ->schema([
+        Forms\Components\TextInput::make('name')
+            ->required()
+            ->maxLength(255),
+        Forms\Components\Textarea::make('description')
+            ->rows(5)
+            ->maxLength(65535),
+        Forms\Components\Toggle::make('publish')
+            ->required(),
+        Forms\Components\Select::make('customer_id')
+            ->relationship('customer', 'name')
+            ->required(),
+    ]);
+```
+
+Let op: je moet er nu ook voor zorgen dat de verschillende velden ingevuld worden in je model `app/Models/Project.php`. Voeg hiervoor de velden toe aan de `$fillable` property.
+
+``` php
+protected $fillable = [
+    'name',
+    'description',
+    'publish',
+    'customer_id',
+];
+```
+
 
 Voor meer informatie over het aanpassen van resources, kan je de [Filament documentatie](https://filamentphp.com/docs/4.x/admin/resources) raadplegen.
 
