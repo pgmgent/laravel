@@ -79,7 +79,7 @@ Voeg vervolgens in je sitemap generator toe aan de sitemap route `routes/web.php
 
 ``` php
 Sitemap::create()
-    ->addModel(Post::class)
+    ->add(Post::all())
     ->writeToFile(public_path('sitemap.xml'));
 ```
 
