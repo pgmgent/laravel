@@ -74,13 +74,25 @@ class Post extends Model implements Sitemapable
 }
 
 ```
-
 Voeg vervolgens in je sitemap generator toe aan de sitemap route `routes/web.php`:
 
 ``` php
 Sitemap::create()
     ->add(Post::all())
     ->writeToFile(public_path('sitemap.xml'));
+```
+
+### Tip voor het dynamisch genereren van de URL's
+
+In plaats van de url handmatig (`Url::create("/posts/{$this->slug}")`) op te bouwen kunnen we ook gebruik maken van de route helper.
+
+``` php
+    return Url::create(route('posts.show', $this->slug))
+```
+Let wel op dat je de route ook echt zo hebt gedefinieerd in je `routes/web.php`.
+
+```php
+Route::get('/posts/{slug}', [PostController::class, 'show'])->name('posts.show');
 ```
 
 ## Gebruik leesbare URL's
