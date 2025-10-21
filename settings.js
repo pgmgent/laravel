@@ -124,8 +124,10 @@ module.exports = Object.freeze({
             path: "/laravel/how-to/",
             children: [
               "/laravel/how-to/artisan",
+              "/laravel/how-to/seo",
               "/laravel/how-to/build-an-api",
               "/laravel/how-to/authentication",
+
 
             ],
           },
