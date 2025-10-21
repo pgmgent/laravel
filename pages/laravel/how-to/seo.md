@@ -14,7 +14,6 @@ Allow: /
 Sitemap: https://www.jouwdomein.be/sitemap
 ``` 
 
-
 Daarnaast is het ook belangrijk om een `sitemap.xml` bestand te hebben dat alle belangrijke pagina's van je website bevat. Dit helpt zoekmachines om je site beter te crawlen en te indexeren.
 
 Je kunt een sitemap genereren met behulp van pakketten zoals [spatie/laravel-sitemap](https://github.com/spatie/laravel-sitemap
@@ -44,7 +43,7 @@ Route::get('/sitemap', function () {
 });
 ```
 
-### Handmatig items toevoegen aan de sitemap
+### Handmatig pagina's toevoegen aan de sitemap
 
 Je kunt dus meerdere URL's handmatig toevoegen aan de sitemap.
 
@@ -56,7 +55,7 @@ Je kunt dus meerdere URL's handmatig toevoegen aan de sitemap.
         )
 ```
 
-### Items vanuit een model toevoegen
+### Alle items van een model toevoegen aan de sitemap
 
 Om alle items binnen een model in 1 keer toe te voegen aan de sitemap kan je die sitemapable maken.
 
@@ -84,14 +83,14 @@ Sitemap::create()
     ->writeToFile(public_path('sitemap.xml'));
 ```
 
-## Gebruik schone URL's
-Zorg ervoor dat je URL's schoon en beschrijvend zijn. Vermijd het gebruik van onnodige parameters en zorg ervoor dat de URL's gemakkelijk te lezen zijn voor zowel gebruikers als zoekmachines. Voeg ook een slug toe aan je routes om dit te bereiken.
+## Gebruik leesbare URL's
+Zorg ervoor dat je URL's leesbaar en beschrijvend zijn. Vermijd het gebruik van onnodige parameters en zorg ervoor dat de URL's gemakkelijk te lezen zijn voor zowel gebruikers als zoekmachines. Voeg een slug toe aan je routes om dit te bereiken.
 
 ### Optie 1: Een slug kolom gebruiken
 
-Je kunt dit doen door een `slug` veld toe te voegen aan je database tabel en deze te genereren op basis van de titel van het bericht of de pagina.
+Je kunt dit doen door een extra `slug` veld toe te voegen aan je database tabel en deze te genereren op basis van de titel van het bericht of de pagina. (Maak hiervoor een database migratie aan om de slug kolom toe te voegen).
 
-Let wel dat deze slug uniek moet zijn.
+Let wel op dat de slug uniek moet zijn binnen alle items van een model. Je kan namelijk niet twee keer de slug "mijn-eerste-post" hebben.
 
 ``` php
 Route::get('/post/{slug}', [PostController::class, 'show'])->name('posts.show');
@@ -99,13 +98,13 @@ Route::get('/post/{slug}', [PostController::class, 'show'])->name('posts.show');
 
 ### Optie 2: Slug genereren op basis van 
 
-Een andere optie is om toch nog de id te gebruiken maar ook een slug te genereren op basis van de titel:
+Een andere optie is om toch nog de id te gebruiken maar ook een slug te genereren op basis van de titel. Het voordeel is dat je dan geen extra unieke slug kolom nodig hebt in je database.
 
 ``` php
 Route::get('/post/{id}/{slug}', [PostController::class, 'show'])->name('posts.show');
 ``` 
 
-In je model maak je dan een methode om de slug te genereren:
+In je model maak je dan een extra methode aan om de slug te genereren op basis van je title (of een ander veld).
 
 ``` php
 public function getSlugAttribute()
@@ -120,7 +119,7 @@ Gebruik meta tags om zoekmachines te voorzien van informatie over de inhoud van 
 
 Schema.org gestructureerde data kan ook worden toegevoegd om zoekmachines te helpen de inhoud van je pagina's beter te begrijpen.
 
-Hiervoor zullen we de package [artesaos/seotools]() gebruiken.
+Hiervoor zullen we de package [artesaos/seotools](https://github.com/artesaos/seotools) gebruiken.
 
 Installeer de package via composer:
 
@@ -128,18 +127,19 @@ Installeer de package via composer:
 ddev composer require artesaos/seotools
 ```
 
-In /bootstrap/providers.php add: 
-Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class
+In `/bootstrap/providers.php` voeg je de service provider toe `Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class` via artisan:
 
 ```shell
 ddev artisan vendor:publish --provider="Artesaos\SEOTools\Providers\SEOToolsServiceProvider"
 ```
 
-Pas nu de aangemaakte /config/seotools.php aan zoals je wil.
+Pas nu de aangemaakte `/config/seotools.php` aan zoals je wil.
 
-Bovenaan je controller: `use Artesaos\SEOTools\Facades\SEOTools`
+Om SEO tags toe te voegen aan je pagina's, gebruik je de SEOTools facade. Deze moet je toevoegen per method in je controllers.
+Bovenaan je controller voeg je alvast de facade toe: `use Artesaos\SEOTools\Facades\SEOTools`
 
-In een (elke) method van je controllers: 
+Om dan de SEO tags in te stellen per method. Hieronder zie je voorbeeldcode die toegevoegd moet worden aan de `index` method van een `HomeController`.
+
 ```php
 SEOTools::setTitle('Home');
 SEOTools::setDescription('This is my page description');
@@ -148,10 +148,23 @@ SEOTools::opengraph()->addProperty('type', 'articles');
 SEOTools::jsonLd()->addImage('https://codecasts.com.br/img/logo.jpg');
 ...
 ```
+Bekijk de [documentatie](https://github.com/artesaos/seotools) voor alle mogelijkheden.
 
-In de `<head>` van je layout 
+Om de uiteindelijke SEO tags in je HTML te tonen, voeg je de volgende code toe aan je layout bestand.
+
+Hierin plaats je onderstaande code in de `<head>` van de layout.
+
 ```blade
 {!! SEO::generate() !!}
 ```
 
-Tip: Vergeet `<title>` en andere dubbele meta tags niet weg te doen
+Je kan ze eventueel ook per type genereren indien je de volgorde zelf wil bepalen:
+
+```blade
+{!! SEO::generateTitle() !!}
+{!! SEO::generateMeta() !!}
+{!! SEO::generateOpenGraph() !!}
+{!! SEO::generateJsonLd() !!}
+```
+
+> Tip: Vergeet `<title>` en andere dubbele meta tags niet weg te doen
