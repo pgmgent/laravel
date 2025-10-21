@@ -11,7 +11,7 @@ Disallow: /admin/
 Disallow: /login
 Disallow: /register
 Allow: /
-Sitemap: https://www.jouwdomein.be/sitemap.xml
+Sitemap: https://www.jouwdomein.be/sitemap
 ``` 
 
 
@@ -28,13 +28,16 @@ We zullen een route aanmaken om de sitemap te genereren en te tonen:
 
 ``` php
 use Spatie\Sitemap\Sitemap;
+use Spatie\Sitemap\Tags\Url;
 
-Route::get('/sitemap.xml', function () {
+
+Route::get('/sitemap', function () {
     Sitemap::create(config('app.url'))
         ->add(Url::create('/')
                 ->setLastModificationDate(now())
                 ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
-                ->setPriority(1.0))
+                ->setPriority(1.0)
+            )
         ->writeToFile(public_path('sitemap.xml'));
 
     return response()->file(public_path('sitemap.xml'));
@@ -47,9 +50,10 @@ Je kunt dus meerdere URL's handmatig toevoegen aan de sitemap.
 
 ``` php
     ->add(Url::create('/about-us')
-        ->setLastModificationDate(now()->subDays(2))
-        ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
-        ->setPriority(0.7))
+            ->setLastModificationDate(now())
+            ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
+            ->setPriority(1.0)
+        )
 ```
 
 ### Items vanuit een model toevoegen
