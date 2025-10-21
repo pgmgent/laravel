@@ -10,16 +10,43 @@ Daarnaast is het ook belangrijk om een `sitemap.xml` bestand te hebben dat alle 
 Je kunt een sitemap genereren met behulp van pakketten zoals [spatie/laravel-sitemap](https://github.com/spatie/laravel-sitemap
 ).
 
-```php
+```shell
+ddev composer require spatie/laravel-sitemap
+```
+
+We zullen een route aanmaken om de sitemap te genereren en te tonen:
+
+``` php
+use Spatie\Sitemap\SitemapGenerator;
+
+Route::get('/sitemap.xml', function () {
+    SitemapGenerator::create(config('app.url'))
+        ->writeToFile(public_path('sitemap.xml'));
+
+    return response()->file(public_path('sitemap.xml'));
+});
+```
+
+### Handmatig items toevoegen aan de sitemap
+
+Je kunt ook handmatig specifieke URL's toevoegen aan de sitemap:
+
+``` php
 use Spatie\Sitemap\Sitemap;
 use Spatie\Sitemap\Tags\Url;
 
-Sitemap::create()
-    ->add(Url::create('/home'))
-    ->add(Url::create('/about'))
-    ->writeToFile(public_path('sitemap.xml'));
-
+Sitemap::create(config('app.url'))
+    ->add(Url::create('/home')
+        ->setLastModificationDate(now())
+        ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
+        ->setPriority(1.0))
+    ->add(Url::create('/about-us')
+        ->setLastModificationDate(now()->subDays(2))
+        ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
+        ->setPriority(0.7))
 ```
+
+### Items vanuit een model toevoegen
 
 Om alle items binnen een model in 1 keer toe te voegen aan de sitemap kan je die sitemapable maken.
 
@@ -49,11 +76,18 @@ Sitemap::create()
 
 ## Gebruik schone URL's
 Zorg ervoor dat je URL's schoon en beschrijvend zijn. Vermijd het gebruik van onnodige parameters en zorg ervoor dat de URL's gemakkelijk te lezen zijn voor zowel gebruikers als zoekmachines. Voeg ook een slug toe aan je routes om dit te bereiken.
-Deze slug moet uniek zijn voor elk bericht of pagina. Je kunt dit doen door een `slug` veld toe te voegen aan je database tabel en deze te genereren op basis van de titel van het bericht of de pagina.
+
+### Optie 1: Een slug kolom gebruiken
+
+Je kunt dit doen door een `slug` veld toe te voegen aan je database tabel en deze te genereren op basis van de titel van het bericht of de pagina.
+
+Let wel dat deze slug uniek moet zijn.
 
 ``` php
 Route::get('/post/{slug}', [PostController::class, 'show'])->name('posts.show');
 ```
+
+### Optie 2: Slug genereren op basis van 
 
 Een andere optie is om toch nog de id te gebruiken maar ook een slug te genereren op basis van de titel:
 
