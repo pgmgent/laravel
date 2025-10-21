@@ -70,13 +70,13 @@ class Post extends Model implements Sitemapable
         return Url::create("/posts/{$this->slug}")
             ->setLastModificationDate($this->updated_at)
             ->setChangeFrequency(Url::CHANGE_FREQUENCY_WEEKLY)
-            ->setPriority(0.8);
+            ->setPriority(1.0);
     }
 }
 
 ```
 
-Voeg vervolgens in je sitemap generator toe:
+Voeg vervolgens in je sitemap generator toe aan de sitemap route `routes/web.php`:
 
 ``` php
 Sitemap::create()
