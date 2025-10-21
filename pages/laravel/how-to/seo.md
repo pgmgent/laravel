@@ -5,6 +5,16 @@ SEO (Search Engine Optimization) is een belangrijk aspect van webontwikkeling, i
 ## robots.txt bestand en sitemap.xml
 Zorg ervoor dat je een `robots.txt` bestand hebt in de root van je Laravel applicatie. Dit bestand geeft zoekmachines instructies over welke pagina's ze wel of niet mogen indexeren.
 
+``` txt
+User-agent: *
+Disallow: /admin/
+Disallow: /login
+Disallow: /register
+Allow: /
+Sitemap: https://www.jouwdomein.be/sitemap.xml
+``` 
+
+
 Daarnaast is het ook belangrijk om een `sitemap.xml` bestand te hebben dat alle belangrijke pagina's van je website bevat. Dit helpt zoekmachines om je site beter te crawlen en te indexeren.
 
 Je kunt een sitemap genereren met behulp van pakketten zoals [spatie/laravel-sitemap](https://github.com/spatie/laravel-sitemap
@@ -17,10 +27,14 @@ ddev composer require spatie/laravel-sitemap
 We zullen een route aanmaken om de sitemap te genereren en te tonen:
 
 ``` php
-use Spatie\Sitemap\SitemapGenerator;
+use Spatie\Sitemap\Sitemap;
 
 Route::get('/sitemap.xml', function () {
-    SitemapGenerator::create(config('app.url'))
+    Sitemap::create(config('app.url'))
+        ->add(Url::create('/')
+                ->setLastModificationDate(now())
+                ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
+                ->setPriority(1.0))
         ->writeToFile(public_path('sitemap.xml'));
 
     return response()->file(public_path('sitemap.xml'));
@@ -29,17 +43,9 @@ Route::get('/sitemap.xml', function () {
 
 ### Handmatig items toevoegen aan de sitemap
 
-Je kunt ook handmatig specifieke URL's toevoegen aan de sitemap:
+Je kunt dus meerdere URL's handmatig toevoegen aan de sitemap.
 
 ``` php
-use Spatie\Sitemap\Sitemap;
-use Spatie\Sitemap\Tags\Url;
-
-Sitemap::create(config('app.url'))
-    ->add(Url::create('/home')
-        ->setLastModificationDate(now())
-        ->setChangeFrequency(Url::CHANGE_FREQUENCY_DAILY)
-        ->setPriority(1.0))
     ->add(Url::create('/about-us')
         ->setLastModificationDate(now()->subDays(2))
         ->setChangeFrequency(Url::CHANGE_FREQUENCY_MONTHLY)
