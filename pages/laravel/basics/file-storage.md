@@ -26,7 +26,32 @@ In je views kan je deze dan oproepen op onderstaande manier.
 <img src="{{ asset('storage/images/afbeelding.jpg') }}">
 ```
 
+## Afbeeldingen opladen via Filament Backoffice
+
+Wanneer je gebruik maakt van Filament kan je ook eenvoudig bestanden opladen via hun FileUpload component. Hieronder een voorbeeld van hoe je dit kan gebruiken in een Resource.
+
+```php
+
+FileUpload::make('image')
+    ->label('Afbeelding')
+    ->directory('projects') 
+    ->disk('public') 
+    ->image(),
+```
+
+Hierbij zal het bestand opgeladen worden in de folder `storage/app/public/projects`. Omdat we eerder een link hebben gemaakt naar de public folder zal het bestand ook beschikbaar zijn via `public/storage/projects`.
+
+Om het bestand daarna op te halen in je view kan je onderstaande code gebruiken.
+
+```html
+<img src="{{ asset('storage/' . $project->image) }}">
+```
+
+> Meer mogelijkheden kan je bekijken in de [Filament documentatie](https://filamentphp.com/docs/4.x/forms/file-upload).
+
 ## Assets opladen
+
+Indien je zelf bestanden wenst op te laden via een formulier in de frontend dan moet je onderstaande code gebruiken in je controller.
 
 Om assets op te laden moet je uiteraard eerst een `<input type="file" name="image">` toevoegen aan je formulier. 
 
@@ -46,8 +71,8 @@ public function save(Request $request, $id = null) {
     $project = ($id) ? Project::findOrFail($id) : new Project();
 
     //Controleer of er een file is opgeladen
-    if( $request->file('photo') ) {
-        $uploaded_path = $request->file('photo')->store('projects', 'public');
+    if( $request->file('image') ) {
+        $uploaded_path = $request->file('image')->store('projects', 'public');
         //haal enkel de filename op van het pad
         $filename = basename($uploaded_path);
     }
@@ -58,7 +83,7 @@ public function save(Request $request, $id = null) {
     $project->publish = 1;
     //Enkel opslaan indien er een filename is.
     if( isset($filename) ) {
-        $project->image = $filename;
+        $project->image = 'projects/' . $filename;
     }
     $success = $project->save();
 

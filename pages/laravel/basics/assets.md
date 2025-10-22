@@ -29,7 +29,9 @@ Je zal zien dat vite ook een versienummer geeft aan de css. Om te linken vanuit 
 ``` html
 <head>
     ...
-    @vite(['resources/css/app.css'])
+    @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @endif
 </head>
 ```
 
@@ -39,3 +41,6 @@ Tijdens development is het vervelend om telkens een build te moeten doen, dus ma
 npm run dev
 ```
 
+## Build voor productie
+
+Om de applicatie online te plaatsen moet je steeds een build doen. Dit kan je doen via `npm run build`. Daarna zorg je ervoor dat de `public/build` folder mee geüpload wordt naar de server.
