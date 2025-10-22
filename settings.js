@@ -103,7 +103,6 @@ module.exports = Object.freeze({
               "/laravel/basics/file-storage",
               "/laravel/basics/image-manipulation",
               "/laravel/basics/forms-validation",
-              "/laravel/basics/localization",
             ],
           },
           {
@@ -127,6 +126,7 @@ module.exports = Object.freeze({
               "/laravel/how-to/seo",
               "/laravel/how-to/build-an-api",
               "/laravel/how-to/authentication",
+              "/laravel/how-to/localization",
 
 
             ],
