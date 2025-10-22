@@ -28,6 +28,8 @@ npm run dev
 
 Je kan nu zelf een gebruiker aanmaken via `/register` en daarna inloggen via `/login`.
 
+> Vergeet niet van je routes/web.php en layouts/app.blade.php terug te zetten indien je deze had aangepast.
+
 ## Authenticatie toepassen
 
 De bedoeling is dat je vanaf nu delen van je website kan afschermen.
