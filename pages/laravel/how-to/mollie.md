@@ -18,6 +18,14 @@ MOLLIE_API_KEY=your_mollie_api_key_here
 ```
 Vervang `your_mollie_api_key_here` door je daadwerkelijke API (test) key die je kunt vinden in je Mollie dashboard.
 
+In je config/services.php bestand, voeg de volgende configuratie toe:
+
+```php
+'mollie' => [
+    'key' => env('MOLLIE_API_KEY'),
+],
+```
+
 ## Gebruik
 
 In je checkout process kan je nu de Mollie API gebruiken om betalingen te verwerken. Hieronder zie je een voorbeeld van een checkout methode in een Laravel controller (bv OrderController ):
