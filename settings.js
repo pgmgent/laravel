@@ -128,6 +128,7 @@ module.exports = Object.freeze({
               "/laravel/how-to/authentication",
               "/laravel/how-to/localization",
               "/laravel/how-to/e-mail",
+              "/laravel/how-to/mollie",
             ],
           },
         ],
