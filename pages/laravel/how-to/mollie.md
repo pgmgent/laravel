@@ -32,10 +32,7 @@ In je checkout process kan je nu de Mollie API gebruiken om betalingen te verwer
 
 ```php
 public function checkout(Request $request) {
-    
-    $mollie = new MollieApiClient();
-    $mollie->setApiKey(config('services.mollie.key'));
-
+    //Stap 1 maak een order aan in je database met de status 'pending'
     $name = $request->input('name') ?? '';
     $address = $request->input('address') ?? '';
     $product_id = $request->input('product_id') ?? 0;
@@ -52,8 +49,11 @@ public function checkout(Request $request) {
 
     $order->save();
 
-      //Indien er meerdere producten (orderlines) per order zijn moet je hier ook de items toevoegen via een relatie en opslaan via $order->items()->saveMany($items)
+    //Indien er meerdere producten (orderlines) per order zijn moet je hier ook de items toevoegen via een relatie en opslaan via $order->items()->saveMany($items)
 
+    //Stap 2 maak een betaling aan via de Mollie API
+    $mollie = new MollieApiClient();
+    $mollie->setApiKey(config('services.mollie.key'));
     $payment = $mollie->payments->create([
         "amount" => [
             "currency" => "EUR",
@@ -67,10 +67,12 @@ public function checkout(Request $request) {
         ],
     ]);
 
+    //Stap 3 sla het payment ID op in je order
     DB::table('orders')->where('id', $order->id)->update([
         'payment_id' => $payment->id,
     ]);
 
+    //Stap 4 stuur de gebruiker door naar de Mollie betaalpagina
     return redirect($payment->getCheckoutUrl(), 303);
     
 }
@@ -80,6 +82,7 @@ Hierna wordt de gebruiker doorgestuurd naar de Mollie betaalpagina. Na succesvol
 
 ```php
 public function success(Request $request) {
+
     $order_id = $request->query('order_id');
     $order = Order::find($order_id);
 
@@ -99,8 +102,6 @@ public function success(Request $request) {
         'payment_status' => $status,
         'payment_method' => $method,
     ]);
-
-
 
     if($payment->isPaid()) {
         return view('checkout.success', ['order' => $order]);
@@ -134,3 +135,18 @@ public function webhook(Request $request) {
     //Hieronder kan je nog extra acties uitvoeren, zoals het versturen van een bevestigingsmail
 }    
 ```
+
+Meer info over webhooks kan je vinden in de [Mollie documentatie](https://docs.mollie.com/reference/webhooks).
+
+## Test credit cards
+
+Tijdens het ontwikkelen kan je gebruik maken van de volgende test credit card nummers:
+| Brand	| Card number |	Expiry date |	CVV |
+|-------|--------------|--------------|------|
+| American Express|	3782 822463 10005 |	Any |	Any |
+| Mastercard |	2223 0000 1047 9399 |	Any |	Any |
+| VISA |	4543 4740 0224 9996 |	Any |	Any |
+
+Meer info over testing kan je vinden in de [Mollie documentatie](https://docs.mollie.com/reference/testing).
+
+
