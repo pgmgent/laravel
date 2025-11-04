@@ -41,7 +41,10 @@ public function checkout(Request $request) {
         'amount' => $amount,
         'payment_status' => 'pending',
     ]);
+
     $order->save();
+
+      //Indien er meerdere producten (orderlines) per order zijn moet je hier ook de items toevoegen via een relatie en opslaan via $order->items()->saveMany($items)
 
     $payment = $mollie->payments->create([
         "amount" => [
